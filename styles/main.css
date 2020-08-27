@@ -35,3 +35,11 @@ body {
 .grid div.hack {
   background-color: black;
 }
+
+.grid div.outerwall {
+  background-color: red;
+}
+
+.grid div.teleporter {
+  background-color: darkblue;
+}
