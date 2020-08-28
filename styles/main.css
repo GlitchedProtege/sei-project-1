@@ -30,16 +30,17 @@ body {
   flex-grow: 1;
   height: 5%;
   width: 2.5%;
-}
-
-.grid div.hack {
-  background-color: black;
-}
-
-.grid div.outerwall {
   background-color: red;
+}
+
+.grid div.innerpath {
+  background-color: transparent;
 }
 
 .grid div.teleporter {
   background-color: darkblue;
+}
+
+.grid div.hack {
+  background-color: black;
 }
