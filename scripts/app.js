@@ -4,13 +4,14 @@ function init() {
   const cells = []
 
   const width = 32
-  const cellCount = width * (width - 7)
+  const height = 25
+  const cellCount = width * (height)
 
   let hackPosition = 82
 
 
   function addWall() {
-    cells[].classList.add('outerwall')
+    cells[2].classList.add('outerwall')
   }
 
   function addHack(position) {
@@ -36,7 +37,7 @@ function init() {
     removeHack(hackPosition)
 
     const x = hackPosition % 40
-    const y = Math.floor(hackPosition / 40)
+    const y = Math.floor(hackPosition / 28)
 
     switch (event.keyCode) {
       case 39:
@@ -49,18 +50,14 @@ function init() {
         if (y > 0) hackPosition = hackPosition - 40
         break
       case 40:
-        if (hackPosition >= 760 && hackPosition <= 799) return
-        if (y < 40 - 1) hackPosition = hackPosition + 40
+        // if (hackPosition >= 760 && hackPosition <= 799) return
+        if (y < 28 - 1) hackPosition = hackPosition + 40
         break
       case 190:
         if (hackPosition === 124) hackPosition = 219
-        // if (hackPosition === 219) hackPosition = 124
         if (hackPosition === 378) hackPosition = 628
-        // if (hackPosition === 628) hackPosition = 378
-        // if (hackPosition === 634) hackPosition = 649
         if (hackPosition === 649) hackPosition = 634
         if (hackPosition === 563) hackPosition = 315
-        // if (hackPosition === 315) hackPosition = 563
         break
       case 188:
         if (hackPosition === 219) hackPosition = 124
