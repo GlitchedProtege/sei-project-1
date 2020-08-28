@@ -9,7 +9,6 @@ function init() {
 
   let hackPosition = 82
 
-
   function addPath() {
     const maze = cells.slice(82, 96)
     maze.forEach(cell => createClass(cell))
@@ -25,7 +24,7 @@ function init() {
     maze5.forEach(cell => createClass(cell))
     const maze6 = cells.slice(230, 238)
     maze6.forEach(cell => createClass(cell))
-    const maze7 = cells.slice(286, 315)
+    const maze7 = cells.slice(286, 314)
     maze7.forEach(cell => createClass(cell))
     const maze8 = cells.slice(362, 367)
     maze8.forEach(cell => createClass(cell))
@@ -53,19 +52,19 @@ function init() {
     maze19.forEach(cell => createClass(cell))
     const maze20 = cells.slice(553, 558)
     maze20.forEach(cell => createClass(cell))
-    const maze21 = cells.slice(566, 577)
+    const maze21 = cells.slice(567, 577)
     maze21.forEach(cell => createClass(cell))
-    const maze22 = cells.slice(581, 592)
+    const maze22 = cells.slice(582, 592)
     maze22.forEach(cell => createClass(cell))
     const maze23 = cells.slice(642, 648)
     maze23.forEach(cell => createClass(cell))
     const maze24 = cells.slice(656, 663)
     maze24.forEach(cell => createClass(cell))
-    const maze25 = cells.slice(671, 677)
+    const maze25 = cells.slice(671, 678)
     maze25.forEach(cell => createClass(cell))
     const maze26 = cells.slice(687, 697)
     maze26.forEach(cell => createClass(cell))
-    const maze27 = cells.slice(702, 713)
+    const maze27 = cells.slice(702, 712)
     maze27.forEach(cell => createClass(cell))
 
     cells[122].classList.add('innerpath')
@@ -155,6 +154,18 @@ function init() {
     cell.classList.add('innerpath')
   }
 
+  function addTeleports() {
+    cells[124].classList.add('teleporter')
+    cells[220].classList.add('teleporter')
+    cells[379].classList.add('teleporter')
+    cells[629].classList.add('teleporter')
+    cells[635].classList.add('teleporter')
+    cells[649].classList.add('teleporter')
+    cells[563].classList.add('teleporter')
+    cells[316].classList.add('teleporter')
+  }
+
+
   function addHack(position) {
     cells[position].classList.add('hack')
   }
@@ -166,45 +177,51 @@ function init() {
   function createGrid(startingPosition) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i
+      // cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
     addHack(startingPosition)
     addPath()
+    addTeleports()
   }
 
   function handleKeyDown(event) {
     removeHack(hackPosition)
 
-    const x = hackPosition % 40
-    const y = Math.floor(hackPosition / 28)
+    // const x = hackPosition % 40
+    // const y = Math.floor(hackPosition / 28)
+    // const path = document.querySelectorAll('.innerpath')
+    const right = hackPosition + 1
+    const left = hackPosition - 1
+    const up = hackPosition - 40
+    const down = hackPosition + 40
+    // console.log(right, left, up, down)
 
     switch (event.keyCode) {
       case 39:
-        if (x < 40 - 1) hackPosition++
+        if (cells[right].classList.contains('innerpath') || cells[right].classList.contains('teleporter')) hackPosition++
         break
       case 37:
-        if (x > 0) hackPosition--
+        if (cells[left].classList.contains('innerpath') || cells[left].classList.contains('teleporter')) hackPosition--
         break
       case 38:
-        if (y > 0) hackPosition = hackPosition - 40
+        if (cells[up].classList.contains('innerpath') || cells[up].classList.contains('teleporter')) hackPosition = hackPosition - 40
         break
       case 40:
-        // if (hackPosition >= 760 && hackPosition <= 799) return
-        if (y < 28 - 1) hackPosition = hackPosition + 40
+        if (cells[down].classList.contains('innerpath') || cells[down].classList.contains('teleporter')) hackPosition = hackPosition + 40
         break
       case 190:
-        if (hackPosition === 124) hackPosition = 219
-        if (hackPosition === 378) hackPosition = 628
-        if (hackPosition === 649) hackPosition = 634
-        if (hackPosition === 563) hackPosition = 315
+        if (hackPosition === 124) hackPosition = 220
+        if (hackPosition === 379) hackPosition = 629
+        if (hackPosition === 649) hackPosition = 635
+        if (hackPosition === 563) hackPosition = 316
         break
       case 188:
-        if (hackPosition === 219) hackPosition = 124
-        if (hackPosition === 628) hackPosition = 378
-        if (hackPosition === 634) hackPosition = 649
-        if (hackPosition === 315) hackPosition = 563
+        if (hackPosition === 220) hackPosition = 124
+        if (hackPosition === 629) hackPosition = 379
+        if (hackPosition === 635) hackPosition = 649
+        if (hackPosition === 316) hackPosition = 563
         break
       default:
         return

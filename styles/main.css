@@ -3,15 +3,21 @@
 }
 
 body {
-  height: 100vh;
+  height: 90vh;
   margin: 0;
+  text-align: center;
+}
+
+body p {
+  margin-top: 50px;
 }
 
 .grid-wrapper {
-  height: 100vh;
+  height: 85vh;
   display:flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .grid {
@@ -34,13 +40,20 @@ body {
 }
 
 .grid div.innerpath {
-  background-color: transparent;
+  background-color: grey;
 }
 
 .grid div.teleporter {
   background-color: darkblue;
 }
 
-.grid div.hack {
-  background-color: black;
+.grid div.hack.teleporter {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/mobshade.png');
+  background-size: contain;
+  background-color: darkblue;
+}
+
+.grid div.hack.innerpath {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/mobshade.png');
+  background-size: contain;
 }
