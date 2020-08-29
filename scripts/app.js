@@ -159,6 +159,7 @@ function init() {
     cell.classList.add('innerpath')
   }
 
+
   function addTeleports() {
     cells[124].classList.add('teleporter')
     cells[220].classList.add('teleporter')
@@ -195,7 +196,7 @@ function init() {
   function createGrid(startingPosition) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      // cell.textContent = i
+      cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -264,6 +265,8 @@ function init() {
     for (let i = 0; i < cellCount; i++) {
       cells[i].classList.remove('painted')
     }
+    playSpace.classList.remove('remove-grid')
+    winner.classList.remove('win')
   }
 
   createGrid(hackPosition)
