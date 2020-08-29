@@ -2,7 +2,12 @@
 function init() {
   const grid = document.querySelector('.grid')
   const cells = []
-
+  const scoreDisplay = document.querySelector('#score')
+  const playSpace = document.querySelector('.grid')
+  const winner = document.querySelector('.win-screen')
+  const resetButton = document.querySelector('#reset')
+  
+  let score = 0
   const width = 32
   const height = 25
   const cellCount = width * (height)
@@ -165,6 +170,11 @@ function init() {
     cells[316].classList.add('teleporter')
   }
 
+  function winScreen() {
+    playSpace.classList.add('remove-grid')
+    winner.classList.add('win')
+  }
+
 
   function addHack(position) {
     cells[position].classList.add('hack')
@@ -172,6 +182,14 @@ function init() {
 
   function removeHack(position) {
     cells[position].classList.remove('hack')
+  }
+
+  function changeCell(position) {
+    if (cells[position].classList.contains('painted') === false || cells[position].classList.contains('teleporter')) {
+      cells[position].classList.add('painted')
+      score += 5
+      scoreDisplay.textContent = score
+    }
   }
 
   function createGrid(startingPosition) {
@@ -188,6 +206,7 @@ function init() {
 
   function handleKeyDown(event) {
     removeHack(hackPosition)
+    changeCell(hackPosition)
 
     // const x = hackPosition % 40
     // const y = Math.floor(hackPosition / 28)
@@ -223,15 +242,34 @@ function init() {
         if (hackPosition === 635) hackPosition = 649
         if (hackPosition === 316) hackPosition = 563
         break
+      case 16:
+        winScreen()
+        break
       default:
-        return
+        addHack(hackPosition)
     }
+    if (score !== 1455) {
+      addHack(hackPosition)
+    } else {
+      winScreen()
+    }
+  }
+
+  function setBack() {
+    score = 0
+    scoreDisplay.textContent = score
+    removeHack(hackPosition)
+    hackPosition = 82
     addHack(hackPosition)
+    for (let i = 0; i < cellCount; i++) {
+      cells[i].classList.remove('painted')
+    }
   }
 
   createGrid(hackPosition)
 
   document.addEventListener('keydown', handleKeyDown)
+  resetButton.addEventListener('click', setBack)
 }
 
 
