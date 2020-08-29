@@ -12,6 +12,11 @@ body p {
   margin-top: 50px;
 }
 
+body h1 {
+  text-decoration: underline;
+}
+
+
 .grid-wrapper {
   height: 85vh;
   display:flex;
@@ -36,21 +41,21 @@ body p {
   flex-grow: 1;
   height: 5%;
   width: 2.5%;
-  background-color: red;
+  background-color: indigo;
 }
 
 .grid div.innerpath {
-  background-color: grey;
+  background-color: pink;
 }
 
 .grid div.teleporter {
-  background-color: darkblue;
+  background-color: lightblue;
 }
 
 .grid div.hack.teleporter {
   background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/mobshade.png');
   background-size: contain;
-  background-color: darkblue;
+  background-color: lightblue;
 }
 
 .grid div.hack.innerpath {
