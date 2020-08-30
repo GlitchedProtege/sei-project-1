@@ -14,6 +14,11 @@ function init() {
 
   let hackPosition = 82
 
+  const joshPosition = 409
+  const hankPosition = 168
+  const stephPosition = 191
+  const crakePosition = 591
+
   function addPath() {
     const maze = cells.slice(82, 96)
     maze.forEach(cell => createClass(cell))
@@ -193,14 +198,34 @@ function init() {
     }
   }
 
-  function createGrid(startingPosition) {
+  function addJosh(position) {
+    cells[position].classList.add('josh')
+  }
+
+  function addHank(position) {
+    cells[position].classList.add('hank')
+  }
+
+  function addSteph(position) {
+    cells[position].classList.add('steph')
+  }
+
+  function addCrake(position) {
+    cells[position].classList.add('crake')
+  }
+
+  function createGrid(startingPosition, josh, hank, steph, crake) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i
+      // cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
     addHack(startingPosition)
+    addJosh(josh)
+    addHank(hank)
+    addSteph(steph)
+    addCrake(crake)
     addPath()
     addTeleports()
   }
@@ -269,7 +294,7 @@ function init() {
     winner.classList.remove('win')
   }
 
-  createGrid(hackPosition)
+  createGrid(hackPosition, joshPosition, hankPosition, stephPosition, crakePosition)
 
   document.addEventListener('keydown', handleKeyDown)
   resetButton.addEventListener('click', setBack)

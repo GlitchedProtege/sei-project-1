@@ -62,14 +62,16 @@ body h1 {
 
 
 .grid div.hack.teleporter {
-  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/mobshade.png');
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/unbuffed.png');
   background-size: contain;
+  background-repeat: no-repeat;
   background-color: lightblue;
 }
 
 .grid div.hack.innerpath {
-  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/mobshade.png');
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/unbuffed.png');
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .grid.remove-grid {
@@ -88,4 +90,24 @@ body h1 {
   font-size: 50px;
   text-decoration: underline;
   background-color: lightblue;
+}
+
+.grid div.josh.innerpath {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/josh.png');
+  background-size: cover;
+}
+
+.grid div.hank.innerpath {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/hank.png');
+  background-size: cover;
+}
+
+.grid div.steph.innerpath {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/steph.png');
+  background-size: cover;
+}
+
+.grid div.crake.innerpath {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/crake.png');
+  background-size: cover;
 }
