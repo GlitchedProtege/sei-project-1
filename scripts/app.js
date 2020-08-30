@@ -5,7 +5,10 @@ function init() {
   const scoreDisplay = document.querySelector('#score')
   const playSpace = document.querySelector('.grid')
   const winner = document.querySelector('.win-screen')
+  const killer = document.querySelector('.kill-screen')
   const resetButton = document.querySelector('#reset')
+  // 
+  const clicker = document.querySelector('#removed')
   
   let score = 0
   const width = 32
@@ -14,10 +17,10 @@ function init() {
 
   let hackPosition = 82
 
-  const joshPosition = 409
-  const hankPosition = 168
-  const stephPosition = 191
-  const crakePosition = 591
+  let joshPosition = 409
+  let hankPosition = 168
+  let stephPosition = 191
+  let crakePosition = 591
 
   function addPath() {
     const maze = cells.slice(82, 96)
@@ -181,6 +184,11 @@ function init() {
     winner.classList.add('win')
   }
 
+  function killScreen() {
+    playSpace.classList.add('remove-grid')
+    killer.classList.add('kill')
+  }
+
 
   function addHack(position) {
     cells[position].classList.add('hack')
@@ -198,26 +206,44 @@ function init() {
     }
   }
 
+  function keepDroning(position) {
+    if (cells[position].classList.contains('been-here') === false) {
+      cells[position].classList.add('been-here')
+    }
+  }
+
   function addJosh(position) {
     cells[position].classList.add('josh')
+  }
+  function removeJosh(position) {
+    cells[position].classList.remove('josh')
   }
 
   function addHank(position) {
     cells[position].classList.add('hank')
   }
+  function removeHank(position) {
+    cells[position].classList.remove('hank')
+  }
 
   function addSteph(position) {
     cells[position].classList.add('steph')
+  }
+  function removeSteph(position) {
+    cells[position].classList.remove('steph')
   }
 
   function addCrake(position) {
     cells[position].classList.add('crake')
   }
+  function removeCrake(position) {
+    cells[position].classList.remove('crake')
+  }
 
   function createGrid(startingPosition, josh, hank, steph, crake) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      // cell.textContent = i
+      cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -271,14 +297,13 @@ function init() {
       case 16:
         winScreen()
         break
+      case 75:
+        killScreen()
+        break
       default:
         addHack(hackPosition)
     }
-    if (score !== 1455) {
-      addHack(hackPosition)
-    } else {
-      winScreen()
-    }
+    moveEnd()
   }
 
   function setBack() {
@@ -287,17 +312,153 @@ function init() {
     removeHack(hackPosition)
     hackPosition = 82
     addHack(hackPosition)
+    removeJosh(joshPosition)
+    removeHank(hankPosition)
+    removeSteph(stephPosition)
+    removeCrake(crakePosition)
+    joshPosition = 409
+    hankPosition = 168
+    stephPosition = 191
+    crakePosition = 591
+    addJosh(joshPosition)
+    addHank(hankPosition)
+    addSteph(stephPosition)
+    addCrake(crakePosition)
     for (let i = 0; i < cellCount; i++) {
       cells[i].classList.remove('painted')
     }
     playSpace.classList.remove('remove-grid')
     winner.classList.remove('win')
+    killer.classList.remove('kill')
+  }
+
+  function move() {
+    const rightJosh = joshPosition + 1
+    const leftJosh = joshPosition - 1
+    const upJosh = joshPosition - 40
+    const downJosh = joshPosition + 40
+    const rightHank = hankPosition + 1
+    const leftHank = hankPosition - 1
+    const upHank = hankPosition - 40
+    const downHank = hankPosition + 40
+    const rightSteph = stephPosition + 1
+    const leftSteph = stephPosition - 1
+    const upSteph = stephPosition - 40
+    const downSteph = stephPosition + 40
+    const rightCrake = crakePosition + 1
+    const leftCrake = crakePosition - 1
+    const upCrake = crakePosition - 40
+    const downCrake = crakePosition + 40
+    removeJosh(joshPosition)
+    keepDroning(joshPosition)
+    removeHank(hankPosition)
+    removeSteph(stephPosition)
+    removeCrake(crakePosition)
+    function sweetMoves() {
+      const random = Math.floor(Math.random() * 20) + 1
+      if (cells[rightJosh].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightJosh].classList.contains('been-here') === false)) { 
+        joshPosition += 1
+      } else if (cells[leftJosh].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftJosh].classList.contains('been-here') === false)) {
+        joshPosition -= 1
+      }  else if (cells[upJosh].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upJosh].classList.contains('been-here') === false)) {
+        joshPosition = joshPosition - 40
+      } else if (cells[downJosh].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downJosh].classList.contains('been-here') === false)) {
+        joshPosition = joshPosition + 40
+      } else if (cells[rightJosh].classList.contains('innerpath') && (cells[rightJosh].classList.contains('been-here') === false)) { 
+        joshPosition += 1
+      } else if (cells[leftJosh].classList.contains('innerpath') && (cells[leftJosh].classList.contains('been-here') === false)) {
+        joshPosition -= 1
+      }  else if (cells[upJosh].classList.contains('innerpath') && (cells[upJosh].classList.contains('been-here') === false)) {
+        joshPosition = joshPosition - 40
+      } else if (cells[downJosh].classList.contains('innerpath') && (cells[downJosh].classList.contains('been-here') === false)){
+        joshPosition = joshPosition + 40
+      }
+    }
+    function sweetMoves1() {
+      const random = Math.floor(Math.random() * 20) + 1
+      if (cells[rightHank].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightHank].classList.contains('been-here') === false)) { 
+        hankPosition += 1
+      } else if (cells[leftHank].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftHank].classList.contains('been-here') === false)) {
+        hankPosition -= 1
+      }  else if (cells[upHank].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upHank].classList.contains('been-here') === false)) {
+        hankPosition = hankPosition - 40
+      } else if (cells[downHank].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downHank].classList.contains('been-here') === false)) {
+        hankPosition = hankPosition + 40
+      } else if (cells[rightHank].classList.contains('innerpath') && (cells[rightHank].classList.contains('been-here') === false)) { 
+        hankPosition += 1
+      } else if (cells[leftHank].classList.contains('innerpath') && (cells[leftHank].classList.contains('been-here') === false)) {
+        hankPosition -= 1
+      }  else if (cells[upHank].classList.contains('innerpath') && (cells[upHank].classList.contains('been-here') === false)) {
+        hankPosition = hankPosition - 40
+      } else if (cells[downHank].classList.contains('innerpath') && (cells[downHank].classList.contains('been-here') === false)) {
+        hankPosition = hankPosition + 40
+      }
+    }
+    function sweetMoves2() {
+      const random = Math.floor(Math.random() * 20) + 1
+      if (cells[rightSteph].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightSteph].classList.contains('been-here') === false)) { 
+        stephPosition += 1
+      } else if (cells[leftSteph].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftSteph].classList.contains('been-here') === false)) {
+        stephPosition -= 1
+      }  else if (cells[upSteph].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upSteph].classList.contains('been-here') === false)) {
+        stephPosition = stephPosition - 40
+      } else if (cells[downSteph].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downSteph].classList.contains('been-here') === false)) {
+        stephPosition = stephPosition + 40
+      } else if (cells[rightSteph].classList.contains('innerpath') && (cells[rightSteph].classList.contains('been-here') === false)) { 
+        stephPosition += 1
+      } else if (cells[leftSteph].classList.contains('innerpath') && (cells[leftSteph].classList.contains('been-here') === false)) {
+        stephPosition -= 1
+      }  else if (cells[upSteph].classList.contains('innerpath') && (cells[upSteph].classList.contains('been-here') === false)) {
+        stephPosition = stephPosition - 40
+      } else if (cells[downSteph].classList.contains('innerpath') && (cells[downSteph].classList.contains('been-here') === false)) {
+        stephPosition = stephPosition + 40
+      }
+    }
+    function sweetMoves3() {
+      const random = Math.floor(Math.random() * 20) + 1
+      if (cells[rightCrake].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightCrake].classList.contains('been-here') === false)) { 
+        crakePosition += 1
+      } else if (cells[leftCrake].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftCrake].classList.contains('been-here') === false)) {
+        crakePosition -= 1
+      }  else if (cells[upCrake].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upCrake].classList.contains('been-here') === false)) {
+        crakePosition = crakePosition - 40
+      } else if (cells[downCrake].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downCrake].classList.contains('been-here') === false)) {
+        crakePosition = crakePosition + 40
+      } else if (cells[rightCrake].classList.contains('innerpath') && (cells[rightCrake].classList.contains('been-here') === false)) { 
+        crakePosition += 1
+      } else if (cells[leftCrake].classList.contains('innerpath') && (cells[leftCrake].classList.contains('been-here') === false)) {
+        crakePosition -= 1
+      }  else if (cells[upCrake].classList.contains('innerpath') && (cells[upCrake].classList.contains('been-here') === false)) {
+        crakePosition = crakePosition - 40
+      } else if (cells[downCrake].classList.contains('innerpath') && (cells[downCrake].classList.contains('been-here') === false)) {
+        crakePosition = crakePosition + 40
+      }
+    }
+    sweetMoves()
+    sweetMoves1()
+    sweetMoves2()
+    sweetMoves3()
+    addJosh(joshPosition)
+    addHank(hankPosition)
+    addSteph(stephPosition)
+    addCrake(crakePosition)
+  }
+
+  function moveEnd() {
+    if (hackPosition === joshPosition || hackPosition === hankPosition || hackPosition === stephPosition || hackPosition === crakePosition) {
+      killScreen()
+    } else if (score !== 1455) {
+      addHack(hackPosition)
+    } else {
+      winScreen()
+    }
   }
 
   createGrid(hackPosition, joshPosition, hankPosition, stephPosition, crakePosition)
 
   document.addEventListener('keydown', handleKeyDown)
   resetButton.addEventListener('click', setBack)
+  clicker.addEventListener('click', move)
 }
 
 
