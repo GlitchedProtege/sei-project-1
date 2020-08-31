@@ -212,6 +212,10 @@ function init() {
     }
   }
 
+  function clearThePath(position) {
+    cells[position].classList.remove('been-here')
+  }
+
   function addJosh(position) {
     cells[position].classList.add('josh')
   }
@@ -325,7 +329,7 @@ function init() {
     addSteph(stephPosition)
     addCrake(crakePosition)
     for (let i = 0; i < cellCount; i++) {
-      cells[i].classList.remove('painted')
+      cells[i].classList.remove('painted', 'been-here')
     }
     playSpace.classList.remove('remove-grid')
     winner.classList.remove('win')
@@ -352,86 +356,153 @@ function init() {
     removeJosh(joshPosition)
     keepDroning(joshPosition)
     removeHank(hankPosition)
+    keepDroning(hankPosition)
     removeSteph(stephPosition)
+    keepDroning(stephPosition)
     removeCrake(crakePosition)
+    keepDroning(crakePosition)
+    // function personalSpace() {
+    //   if (joshPosition === hankPosition && cells[rightJosh].classList.contains('innerpath') && cells[rightHank].classList.contains('innerpath')) {
+    //     joshPosition += 1 
+    //     hankPosition += 1
+    //   }
+    // }
     function sweetMoves() {
       const random = Math.floor(Math.random() * 20) + 1
+      // personalSpace()
       if (cells[rightJosh].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightJosh].classList.contains('been-here') === false)) { 
         joshPosition += 1
+        clearThePath(leftJosh)
       } else if (cells[leftJosh].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftJosh].classList.contains('been-here') === false)) {
         joshPosition -= 1
+        clearThePath(rightJosh)
       }  else if (cells[upJosh].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upJosh].classList.contains('been-here') === false)) {
         joshPosition = joshPosition - 40
+        clearThePath(upJosh)
       } else if (cells[downJosh].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downJosh].classList.contains('been-here') === false)) {
         joshPosition = joshPosition + 40
+        clearThePath(downJosh)
       } else if (cells[rightJosh].classList.contains('innerpath') && (cells[rightJosh].classList.contains('been-here') === false)) { 
         joshPosition += 1
+        clearThePath(leftJosh)
       } else if (cells[leftJosh].classList.contains('innerpath') && (cells[leftJosh].classList.contains('been-here') === false)) {
         joshPosition -= 1
+        clearThePath(rightJosh)
       }  else if (cells[upJosh].classList.contains('innerpath') && (cells[upJosh].classList.contains('been-here') === false)) {
         joshPosition = joshPosition - 40
+        clearThePath(downJosh)
       } else if (cells[downJosh].classList.contains('innerpath') && (cells[downJosh].classList.contains('been-here') === false)){
         joshPosition = joshPosition + 40
+        clearThePath(upJosh)
       }
     }
     function sweetMoves1() {
       const random = Math.floor(Math.random() * 20) + 1
       if (cells[rightHank].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightHank].classList.contains('been-here') === false)) { 
         hankPosition += 1
+        clearThePath(leftHank)
       } else if (cells[leftHank].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftHank].classList.contains('been-here') === false)) {
         hankPosition -= 1
+        clearThePath(rightHank)
       }  else if (cells[upHank].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upHank].classList.contains('been-here') === false)) {
         hankPosition = hankPosition - 40
+        clearThePath(downHank)
       } else if (cells[downHank].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downHank].classList.contains('been-here') === false)) {
         hankPosition = hankPosition + 40
+        clearThePath(upHank)
       } else if (cells[rightHank].classList.contains('innerpath') && (cells[rightHank].classList.contains('been-here') === false)) { 
         hankPosition += 1
+        clearThePath(leftHank)
       } else if (cells[leftHank].classList.contains('innerpath') && (cells[leftHank].classList.contains('been-here') === false)) {
         hankPosition -= 1
+        clearThePath(rightHank)
       }  else if (cells[upHank].classList.contains('innerpath') && (cells[upHank].classList.contains('been-here') === false)) {
         hankPosition = hankPosition - 40
+        clearThePath(downHank)
       } else if (cells[downHank].classList.contains('innerpath') && (cells[downHank].classList.contains('been-here') === false)) {
         hankPosition = hankPosition + 40
+        clearThePath(upHank)
       }
     }
     function sweetMoves2() {
       const random = Math.floor(Math.random() * 20) + 1
       if (cells[rightSteph].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightSteph].classList.contains('been-here') === false)) { 
         stephPosition += 1
+        clearThePath(leftSteph)
       } else if (cells[leftSteph].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftSteph].classList.contains('been-here') === false)) {
         stephPosition -= 1
+        clearThePath(rightSteph)
       }  else if (cells[upSteph].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upSteph].classList.contains('been-here') === false)) {
         stephPosition = stephPosition - 40
+        clearThePath(downSteph)
       } else if (cells[downSteph].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downSteph].classList.contains('been-here') === false)) {
         stephPosition = stephPosition + 40
+        clearThePath(upSteph)
       } else if (cells[rightSteph].classList.contains('innerpath') && (cells[rightSteph].classList.contains('been-here') === false)) { 
         stephPosition += 1
+        clearThePath(leftSteph)
       } else if (cells[leftSteph].classList.contains('innerpath') && (cells[leftSteph].classList.contains('been-here') === false)) {
         stephPosition -= 1
+        clearThePath(rightSteph)
       }  else if (cells[upSteph].classList.contains('innerpath') && (cells[upSteph].classList.contains('been-here') === false)) {
         stephPosition = stephPosition - 40
+        clearThePath(downSteph)
       } else if (cells[downSteph].classList.contains('innerpath') && (cells[downSteph].classList.contains('been-here') === false)) {
         stephPosition = stephPosition + 40
+        clearThePath(upSteph)
       }
+      // } else if (cells[rightSteph].classList.contains('innerpath') && (random > 5 && random > 11) && (cells[rightSteph].classList.contains('been-here') === false)) { 
+      //   stephPosition += 1
+      // } else if (cells[leftSteph].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[leftSteph].classList.contains('been-here') === false)) {
+      //   stephPosition -= 1
+      // }  else if (cells[upSteph].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[upSteph].classList.contains('been-here') === false)) {
+      //   stephPosition = stephPosition - 40
+      // } else if (cells[downSteph].classList.contains('innerpath') && (random > 0 && random < 6) && (cells[downSteph].classList.contains('been-here') === false)) {
+      //   stephPosition = stephPosition + 40
+      // } else if (cells[rightSteph].classList.contains('innerpath') && (random > 10 && random > 16) && (cells[rightSteph].classList.contains('been-here') === false)) { 
+      //   stephPosition += 1
+      // } else if (cells[leftSteph].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[leftSteph].classList.contains('been-here') === false)) {
+      //   stephPosition -= 1
+      // }  else if (cells[upSteph].classList.contains('innerpath') && (random > 0 && random < 6) && (cells[upSteph].classList.contains('been-here') === false)) {
+      //   stephPosition = stephPosition - 40
+      // } else if (cells[downSteph].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[downSteph].classList.contains('been-here') === false)) {
+      //   stephPosition = stephPosition + 40
+      // } else if (cells[rightSteph].classList.contains('innerpath') && (random > 15 && random > 21) && (cells[rightSteph].classList.contains('been-here') === false)) { 
+      //   stephPosition += 1
+      // } else if (cells[leftSteph].classList.contains('innerpath') && (random > 0 && random < 6) && (cells[leftSteph].classList.contains('been-here') === false)) {
+      //   stephPosition -= 1
+      // }  else if (cells[upSteph].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[upSteph].classList.contains('been-here') === false)) {
+      //   stephPosition = stephPosition - 40
+      // } else if (cells[downSteph].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[downSteph].classList.contains('been-here') === false)) {
+      //   stephPosition = stephPosition + 40
+      // } 
     }
     function sweetMoves3() {
       const random = Math.floor(Math.random() * 20) + 1
       if (cells[rightCrake].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightCrake].classList.contains('been-here') === false)) { 
         crakePosition += 1
+        clearThePath(leftCrake)
       } else if (cells[leftCrake].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftCrake].classList.contains('been-here') === false)) {
         crakePosition -= 1
+        clearThePath(rightCrake)
       }  else if (cells[upCrake].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upCrake].classList.contains('been-here') === false)) {
         crakePosition = crakePosition - 40
+        clearThePath(downCrake)
       } else if (cells[downCrake].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downCrake].classList.contains('been-here') === false)) {
         crakePosition = crakePosition + 40
+        clearThePath(upCrake)
       } else if (cells[rightCrake].classList.contains('innerpath') && (cells[rightCrake].classList.contains('been-here') === false)) { 
         crakePosition += 1
+        clearThePath(leftCrake)
       } else if (cells[leftCrake].classList.contains('innerpath') && (cells[leftCrake].classList.contains('been-here') === false)) {
         crakePosition -= 1
+        clearThePath(rightCrake)
       }  else if (cells[upCrake].classList.contains('innerpath') && (cells[upCrake].classList.contains('been-here') === false)) {
         crakePosition = crakePosition - 40
+        clearThePath(downCrake)
       } else if (cells[downCrake].classList.contains('innerpath') && (cells[downCrake].classList.contains('been-here') === false)) {
         crakePosition = crakePosition + 40
+        clearThePath(upCrake)
       }
     }
     sweetMoves()
@@ -453,6 +524,7 @@ function init() {
       winScreen()
     }
   }
+
 
   createGrid(hackPosition, joshPosition, hankPosition, stephPosition, crakePosition)
 
