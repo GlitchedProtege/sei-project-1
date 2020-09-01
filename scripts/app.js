@@ -271,7 +271,7 @@ function init() {
   function createGrid(startingPosition, josh, hank, steph, crake) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      // cell.textContent = i
+      cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -379,6 +379,10 @@ function init() {
     const upCrake = crakePosition - 40
     const downCrake = crakePosition + 40
     removeJosh(joshPosition)
+    cells[joshPosition].classList.remove('left', 'right', 'up')
+    cells[hankPosition].classList.remove('left', 'right', 'up')
+    cells[stephPosition].classList.remove('left', 'right', 'up')
+    cells[crakePosition].classList.remove('left', 'right', 'up')
     keepDroning(joshPosition)
     removeHank(hankPosition)
     keepDroning1(hankPosition)
@@ -393,16 +397,19 @@ function init() {
         clearThePath(upJosh)
         clearThePath(downJosh)
         joshPosition += 1
+        cells[joshPosition].classList.add('right')
       } else if (cells[leftJosh].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftJosh].classList.contains('been-here') === false)) {
         clearThePath(rightJosh)
         clearThePath(upJosh)
         clearThePath(downJosh)
         joshPosition -= 1
+        cells[joshPosition].classList.add('left')
       }  else if (cells[upJosh].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upJosh].classList.contains('been-here') === false)) {
         clearThePath(downJosh)
         clearThePath(rightJosh)
         clearThePath(leftJosh)
         joshPosition = joshPosition - 40
+        cells[joshPosition].classList.add('up')
       } else if (cells[downJosh].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downJosh].classList.contains('been-here') === false)) {
         clearThePath(upJosh)
         clearThePath(rightJosh)
@@ -413,16 +420,19 @@ function init() {
         clearThePath(upJosh)
         clearThePath(downJosh)
         joshPosition += 1
+        cells[joshPosition].classList.add('right')
       } else if (cells[leftJosh].classList.contains('innerpath') && (cells[leftJosh].classList.contains('been-here') === false)) {
         clearThePath(rightJosh)
         clearThePath(upJosh)
         clearThePath(downJosh)
         joshPosition -= 1
+        cells[joshPosition].classList.add('left')
       }  else if (cells[upJosh].classList.contains('innerpath') && (cells[upJosh].classList.contains('been-here') === false)) {
         clearThePath(downJosh)
         clearThePath(rightJosh)
         clearThePath(leftJosh)
         joshPosition = joshPosition - 40
+        cells[joshPosition].classList.add('up')
       } else if (cells[downJosh].classList.contains('innerpath') && (cells[downJosh].classList.contains('been-here') === false)){
         clearThePath(upJosh)
         clearThePath(rightJosh)
@@ -437,6 +447,7 @@ function init() {
         clearThePath1(upHank)
         clearThePath1(downHank)
         hankPosition += 1
+        cells[hankPosition].classList.add('right')
       } else if (cells[downHank].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downHank].classList.contains('been-here1') === false)) {
         clearThePath1(upHank)
         clearThePath1(leftHank)
@@ -447,16 +458,19 @@ function init() {
         clearThePath1(leftHank)
         clearThePath1(rightHank)
         hankPosition = hankPosition - 40
+        cells[hankPosition].classList.add('up')
       } else if (cells[leftHank].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftHank].classList.contains('been-here1') === false)) {
         clearThePath1(rightHank)
         clearThePath1(upHank)
         clearThePath1(downHank)
         hankPosition -= 1
+        cells[hankPosition].classList.add('left')
       } else if (cells[rightHank].classList.contains('innerpath') && (cells[rightHank].classList.contains('been-here1') === false)) { 
         clearThePath1(leftHank)
         clearThePath1(upHank)
         clearThePath1(downHank)
         hankPosition += 1
+        cells[hankPosition].classList.add('right')
       } else if (cells[downHank].classList.contains('innerpath') && (cells[downHank].classList.contains('been-here1') === false)) {
         clearThePath1(upHank)
         clearThePath1(leftHank)
@@ -467,11 +481,13 @@ function init() {
         clearThePath1(leftHank)
         clearThePath1(rightHank)
         hankPosition = hankPosition - 40
+        cells[hankPosition].classList.add('up')
       } else if (cells[leftHank].classList.contains('innerpath') && (cells[leftHank].classList.contains('been-here1') === false)) {
         clearThePath1(rightHank)
         clearThePath1(upHank)
         clearThePath1(downHank)
         hankPosition -= 1
+        cells[hankPosition].classList.add('left')
       }
     }
     function sweetMoves2() {
@@ -481,6 +497,7 @@ function init() {
         clearThePath2(upSteph)
         clearThePath2(downSteph)
         stephPosition -= 1
+        cells[stephPosition].classList.add('left')
       } else if (cells[downSteph].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downSteph].classList.contains('been-here2') === false)) {
         clearThePath2(upSteph)
         clearThePath2(leftSteph)
@@ -491,16 +508,19 @@ function init() {
         clearThePath2(upSteph)
         clearThePath2(downSteph)
         stephPosition += 1
+        cells[stephPosition].classList.add('right')
       } else if (cells[upSteph].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upSteph].classList.contains('been-here2') === false)) {
         clearThePath2(downSteph)
         clearThePath2(leftSteph)
         clearThePath2(rightSteph)
         stephPosition = stephPosition - 40
+        cells[stephPosition].classList.add('up')
       } else if (cells[leftSteph].classList.contains('innerpath') && (cells[leftSteph].classList.contains('been-here2') === false)) {
         clearThePath2(rightSteph)
         clearThePath2(upSteph)
         clearThePath2(downSteph)
         stephPosition -= 1
+        cells[stephPosition].classList.add('left')
       } else if (cells[downSteph].classList.contains('innerpath') && (cells[downSteph].classList.contains('been-here2') === false)) {
         clearThePath2(upSteph)
         clearThePath2(leftSteph)
@@ -511,11 +531,13 @@ function init() {
         clearThePath2(upSteph)
         clearThePath2(downSteph)
         stephPosition += 1
+        cells[stephPosition].classList.add('right')
       } else if (cells[upSteph].classList.contains('innerpath') && (cells[upSteph].classList.contains('been-here2') === false)) {
         clearThePath2(downSteph)
         clearThePath2(leftSteph)
         clearThePath2(rightSteph)
         stephPosition = stephPosition - 40
+        cells[stephPosition].classList.add('up')
       }
     }
     function sweetMoves3() {
@@ -525,16 +547,19 @@ function init() {
         clearThePath3(upCrake)
         clearThePath3(downCrake)
         crakePosition -= 1
+        cells[crakePosition].classList.add('left')
       } else if (cells[upCrake].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[upCrake].classList.contains('been-here3') === false)) {
         clearThePath3(downCrake)
         clearThePath3(leftCrake)
         clearThePath3(rightCrake)
         crakePosition = crakePosition - 40
+        cells[crakePosition].classList.add('up')
       } else if (cells[rightCrake].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[rightCrake].classList.contains('been-here3') === false)) { 
         clearThePath3(leftCrake)
         clearThePath3(upCrake)
         clearThePath3(downCrake)
         crakePosition += 1
+        cells[crakePosition].classList.add('right')
       } else if (cells[downCrake].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downCrake].classList.contains('been-here3') === false)) {
         clearThePath3(upCrake)
         clearThePath3(leftCrake)
@@ -545,16 +570,19 @@ function init() {
         clearThePath3(upCrake)
         clearThePath3(downCrake)
         crakePosition -= 1
+        cells[crakePosition].classList.add('left')
       } else if (cells[upCrake].classList.contains('innerpath') && (cells[upCrake].classList.contains('been-here3') === false)) {
         clearThePath3(downCrake)
         clearThePath3(leftCrake)
         clearThePath3(rightCrake)
         crakePosition = crakePosition - 40
+        cells[crakePosition].classList.add('up')
       } else if (cells[rightCrake].classList.contains('innerpath') && (cells[rightCrake].classList.contains('been-here3') === false)) { 
         clearThePath3(leftCrake)
         clearThePath3(upCrake)
         clearThePath3(downCrake)
         crakePosition += 1
+        cells[crakePosition].classList.add('right')
       } else if (cells[downCrake].classList.contains('innerpath') && (cells[downCrake].classList.contains('been-here3') === false)) {
         clearThePath3(upCrake)
         clearThePath3(leftCrake)
@@ -575,7 +603,60 @@ function init() {
     }
   }
 
+  function sightLines(leftEdge, rightEdge, identification) {
+    if (hackPosition > leftEdge && hackPosition < identification) {
+      console.log('seen you: left')
+    } else if (hackPosition < rightEdge && hackPosition > identification) {
+      console.log('seen you: right')
+    }
+    if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
+      console.log('seen you: up')
+    }
+    if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
+      console.log('seen you: down')
+    }
+  }
+
+  function smartMove(id) {
+    if (id > 81 && id < 118) {
+      sightLines(81, 118, id)
+    } else if (id > 121 && id < 158) {
+      sightLines(121, 158, id)
+    } else if (id > 161 && id < 198) {
+      sightLines(161, 198, id)
+    } else if (id > 201 && id < 238) {
+      sightLines(201, 238, id)
+    } else if (id > 241 && id < 278) {
+      sightLines(241, 278, id)
+    } else if (id > 281 && id < 318) {
+      sightLines(281, 318, id)
+    } else if (id > 321 && id < 358) {
+      sightLines(321, 358, id)
+    } else if (id > 361 && id < 398) {
+      sightLines(361, 398, id)
+    } else if (id > 401 && id < 438) {
+      sightLines(401, 438, id)
+    } else if (id > 441 && id < 478) {
+      sightLines(441, 478, id)
+    } else if (id > 481 && id < 518) {
+      sightLines(481, 518, id)
+    } else if (id > 521 && id < 558) {
+      sightLines(521, 558, id)
+    } else if (id > 561 && id < 598) {
+      sightLines(561, 598, id)
+    } else if (id > 601 && id < 638) {
+      sightLines(601, 638, id)
+    } else if (id > 641 && id < 678) {
+      sightLines(641, 678, id)
+    } else if (id > 681 && id < 718) {
+      sightLines(681, 718, id)
+    }  
+  }
   function moveEnd() {
+    smartMove(joshPosition)
+    smartMove(hankPosition)
+    smartMove(stephPosition)
+    smartMove(crakePosition)
     if (score !== 1455) {
       addHack(hackPosition)
     } else {

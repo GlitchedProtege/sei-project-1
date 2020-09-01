@@ -114,17 +114,62 @@ body h1 {
   background-size: cover;
 }
 
+.grid div.josh.innerpath.left {
+  transform: rotate(90deg);
+}
+
+.grid div.josh.innerpath.right {
+  transform: rotate(270deg);
+}
+
+.grid div.josh.innerpath.up {
+  transform: rotate(180deg);
+}
+
 .grid div.hank.innerpath {
   background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/hank.png');
   background-size: cover;
+}
+.grid div.hank.innerpath.left {
+  transform: rotate(90deg);
+}
+
+.grid div.hank.innerpath.right {
+  transform: rotate(270deg);
+}
+
+.grid div.hank.innerpath.up {
+  transform: rotate(180deg);
 }
 
 .grid div.steph.innerpath {
   background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/steph.png');
   background-size: cover;
 }
+.grid div.steph.innerpath.left {
+  transform: rotate(90deg);
+}
+
+.grid div.steph.innerpath.right {
+  transform: rotate(270deg);
+}
+
+.grid div.steph.innerpath.up {
+  transform: rotate(180deg);
+}
 
 .grid div.crake.innerpath {
   background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/crake.png');
   background-size: cover;
+}
+.grid div.crake.innerpath.left {
+  transform: rotate(90deg);
+}
+
+.grid div.crake.innerpath.right {
+  transform: rotate(270deg);
+}
+
+.grid div.crake.innerpath.up {
+  transform: rotate(180deg);
 }
