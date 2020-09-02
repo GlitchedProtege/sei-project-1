@@ -199,3 +199,8 @@ body h1 {
   transform: rotate(180deg);
   background-size: cover;
 }
+
+.grid div.innerpath.survivor {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/survivor.png');
+  background-size: cover;
+}
