@@ -335,7 +335,7 @@ function init() {
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i
+      // cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -415,7 +415,212 @@ function init() {
     stopTheStartedParty()
   }
 
+
   function move() {
+
+    function smartMove(id) {
+      if (id > 81 && id < 118) {
+        sightLines(81, 118, id)
+      } else if (id > 121 && id < 158) {
+        sightLines(121, 158, id)
+      } else if (id > 161 && id < 198) {
+        sightLines(161, 198, id)
+      } else if (id > 201 && id < 238) {
+        sightLines(201, 238, id)
+      } else if (id > 241 && id < 278) {
+        sightLines(241, 278, id)
+      } else if (id > 281 && id < 318) {
+        sightLines(281, 318, id)
+      } else if (id > 321 && id < 358) {
+        sightLines(321, 358, id)
+      } else if (id > 361 && id < 398) {
+        sightLines(361, 398, id)
+      } else if (id > 401 && id < 438) {
+        sightLines(401, 438, id)
+      } else if (id > 441 && id < 478) {
+        sightLines(441, 478, id)
+      } else if (id > 481 && id < 518) {
+        sightLines(481, 518, id)
+      } else if (id > 521 && id < 558) {
+        sightLines(521, 558, id)
+      } else if (id > 561 && id < 598) {
+        sightLines(561, 598, id)
+      } else if (id > 601 && id < 638) {
+        sightLines(601, 638, id)
+      } else if (id > 641 && id < 678) {
+        sightLines(641, 678, id)
+      } else if (id > 681 && id < 718) {
+        sightLines(681, 718, id)
+      }  
+    }
+    function smartMove1(id) {
+      if (id > 81 && id < 118) {
+        sightLines1(81, 118, id)
+      } else if (id > 121 && id < 158) {
+        sightLines1(121, 158, id)
+      } else if (id > 161 && id < 198) {
+        sightLines1(161, 198, id)
+      } else if (id > 201 && id < 238) {
+        sightLines1(201, 238, id)
+      } else if (id > 241 && id < 278) {
+        sightLines1(241, 278, id)
+      } else if (id > 281 && id < 318) {
+        sightLines1(281, 318, id)
+      } else if (id > 321 && id < 358) {
+        sightLines1(321, 358, id)
+      } else if (id > 361 && id < 398) {
+        sightLines1(361, 398, id)
+      } else if (id > 401 && id < 438) {
+        sightLines1(401, 438, id)
+      } else if (id > 441 && id < 478) {
+        sightLines1(441, 478, id)
+      } else if (id > 481 && id < 518) {
+        sightLines1(481, 518, id)
+      } else if (id > 521 && id < 558) {
+        sightLines1(521, 558, id)
+      } else if (id > 561 && id < 598) {
+        sightLines1(561, 598, id)
+      } else if (id > 601 && id < 638) {
+        sightLines1(601, 638, id)
+      } else if (id > 641 && id < 678) {
+        sightLines1(641, 678, id)
+      } else if (id > 681 && id < 718) {
+        sightLines1(681, 718, id)
+      }  
+    }
+    function smartMove2(id) {
+      if (id > 81 && id < 118) {
+        sightLines2(81, 118, id)
+      } else if (id > 121 && id < 158) {
+        sightLines2(121, 158, id)
+      } else if (id > 161 && id < 198) {
+        sightLines2(161, 198, id)
+      } else if (id > 201 && id < 238) {
+        sightLines2(201, 238, id)
+      } else if (id > 241 && id < 278) {
+        sightLines2(241, 278, id)
+      } else if (id > 281 && id < 318) {
+        sightLines2(281, 318, id)
+      } else if (id > 321 && id < 358) {
+        sightLines2(321, 358, id)
+      } else if (id > 361 && id < 398) {
+        sightLines2(361, 398, id)
+      } else if (id > 401 && id < 438) {
+        sightLines2(401, 438, id)
+      } else if (id > 441 && id < 478) {
+        sightLines2(441, 478, id)
+      } else if (id > 481 && id < 518) {
+        sightLines2(481, 518, id)
+      } else if (id > 521 && id < 558) {
+        sightLines2(521, 558, id)
+      } else if (id > 561 && id < 598) {
+        sightLines2(561, 598, id)
+      } else if (id > 601 && id < 638) {
+        sightLines2(601, 638, id)
+      } else if (id > 641 && id < 678) {
+        sightLines2(641, 678, id)
+      } else if (id > 681 && id < 718) {
+        sightLines2(681, 718, id)
+      }  
+    }
+    function smartMove3(id) {
+      if (id > 81 && id < 118) {
+        sightLines3(81, 118, id)
+      } else if (id > 121 && id < 158) {
+        sightLines3(121, 158, id)
+      } else if (id > 161 && id < 198) {
+        sightLines3(161, 198, id)
+      } else if (id > 201 && id < 238) {
+        sightLines3(201, 238, id)
+      } else if (id > 241 && id < 278) {
+        sightLines3(241, 278, id)
+      } else if (id > 281 && id < 318) {
+        sightLines3(281, 318, id)
+      } else if (id > 321 && id < 358) {
+        sightLines3(321, 358, id)
+      } else if (id > 361 && id < 398) {
+        sightLines3(361, 398, id)
+      } else if (id > 401 && id < 438) {
+        sightLines3(401, 438, id)
+      } else if (id > 441 && id < 478) {
+        sightLines3(441, 478, id)
+      } else if (id > 481 && id < 518) {
+        sightLines3(481, 518, id)
+      } else if (id > 521 && id < 558) {
+        sightLines3(521, 558, id)
+      } else if (id > 561 && id < 598) {
+        sightLines3(561, 598, id)
+      } else if (id > 601 && id < 638) {
+        sightLines3(601, 638, id)
+      } else if (id > 641 && id < 678) {
+        sightLines3(641, 678, id)
+      } else if (id > 681 && id < 718) {
+        sightLines3(681, 718, id)
+      }  
+    }
+
+    let sight
+    let sight1
+    let sight2
+    let sight3
+
+    function sightLines(leftEdge, rightEdge, identification) {
+      if (hackPosition > leftEdge && hackPosition < identification) {
+        sight = 'left'
+      } else if (hackPosition < rightEdge && hackPosition > identification) {
+        sight = 'right'
+      }
+      if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
+        sight = 'up'
+      }
+      if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
+        sight = 'down'
+      }
+    }
+    function sightLines1(leftEdge, rightEdge, identification) {
+      if (hackPosition > leftEdge && hackPosition < identification) {
+        sight1 = 'left'
+      } else if (hackPosition < rightEdge && hackPosition > identification) {
+        sight1 = 'right'
+      }
+      if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
+        sight1 = 'up'
+      }
+      if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
+        sight1 = 'down'
+      }
+    }
+    function sightLines2(leftEdge, rightEdge, identification) {
+      if (hackPosition > leftEdge && hackPosition < identification) {
+        sight2 = 'left'
+      } else if (hackPosition < rightEdge && hackPosition > identification) {
+        sight2 = 'right'
+      }
+      if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
+        sight2 = 'up'
+      }
+      if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
+        sight2 = 'down'
+      }
+    }
+    function sightLines3(leftEdge, rightEdge, identification) {
+      if (hackPosition > leftEdge && hackPosition < identification) {
+        sight3 = 'left'
+      } else if (hackPosition < rightEdge && hackPosition > identification) {
+        sight3 = 'right'
+      }
+      if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
+        sight3 = 'up'
+      }
+      if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
+        console.log('seen you: down')
+        sight3 = 'down'
+      }
+    }
+    smartMove(joshPosition)
+    smartMove1(hankPosition)
+    smartMove2(stephPosition)
+    smartMove3(crakePosition)
     const rightJosh = joshPosition + 1
     const leftJosh = joshPosition - 1
     const upJosh = joshPosition - 40
@@ -446,25 +651,25 @@ function init() {
     keepDroning3(crakePosition)
     function sweetMoves() {
       const random = Math.floor(Math.random() * 20) + 1
-      if (cells[rightJosh].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightJosh].classList.contains('been-here') === false)) { 
+      if ((cells[rightJosh].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightJosh].classList.contains('been-here') === false)) || ((cells[rightJosh].classList.contains('innerpath')) && sight === 'right')) { 
         clearThePath(leftJosh)
         clearThePath(upJosh)
         clearThePath(downJosh)
         joshPosition += 1
         cells[joshPosition].classList.add('right')
-      } else if (cells[leftJosh].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftJosh].classList.contains('been-here') === false)) {
+      } else if ((cells[leftJosh].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftJosh].classList.contains('been-here') === false)) || ((cells[leftJosh].classList.contains('innerpath')) && sight === 'left')) {
         clearThePath(rightJosh)
         clearThePath(upJosh)
         clearThePath(downJosh)
         joshPosition -= 1
         cells[joshPosition].classList.add('left')
-      }  else if (cells[upJosh].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upJosh].classList.contains('been-here') === false)) {
+      }  else if ((cells[upJosh].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upJosh].classList.contains('been-here') === false)) || ((cells[upJosh].classList.contains('innerpath')) && sight === 'up')) {
         clearThePath(downJosh)
         clearThePath(rightJosh)
         clearThePath(leftJosh)
         joshPosition = joshPosition - 40
         cells[joshPosition].classList.add('up')
-      } else if (cells[downJosh].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downJosh].classList.contains('been-here') === false)) {
+      } else if ((cells[downJosh].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downJosh].classList.contains('been-here') === false)) || ((cells[downJosh].classList.contains('innerpath')) && sight === 'down')) {
         clearThePath(upJosh)
         clearThePath(rightJosh)
         clearThePath(leftJosh)
@@ -496,24 +701,24 @@ function init() {
     }
     function sweetMoves1() {
       const random = Math.floor(Math.random() * 20) + 1
-      if (cells[rightHank].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightHank].classList.contains('been-here1') === false)) { 
+      if ((cells[rightHank].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightHank].classList.contains('been-here1') === false)) || ((cells[rightHank].classList.contains('innerpath')) && sight1 === 'right')) { 
         clearThePath1(leftHank)
         clearThePath1(upHank)
         clearThePath1(downHank)
         hankPosition += 1
         cells[hankPosition].classList.add('right')
-      } else if (cells[downHank].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downHank].classList.contains('been-here1') === false)) {
+      } else if ((cells[downHank].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downHank].classList.contains('been-here1') === false)) || ((cells[downHank].classList.contains('innerpath')) && sight1 === 'down')) {
         clearThePath1(upHank)
         clearThePath1(leftHank)
         clearThePath1(rightHank)
         hankPosition = hankPosition + 40
-      } else if (cells[upHank].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upHank].classList.contains('been-here1') === false)) {
+      } else if ((cells[upHank].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upHank].classList.contains('been-here1') === false)) || ((cells[upHank].classList.contains('innerpath')) && sight1 === 'up')) {
         clearThePath1(downHank)
         clearThePath1(leftHank)
         clearThePath1(rightHank)
         hankPosition = hankPosition - 40
         cells[hankPosition].classList.add('up')
-      } else if (cells[leftHank].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftHank].classList.contains('been-here1') === false)) {
+      } else if ((cells[leftHank].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftHank].classList.contains('been-here1') === false)) || ((cells[leftHank].classList.contains('innerpath')) && sight1 === 'left')) {
         clearThePath1(rightHank)
         clearThePath1(upHank)
         clearThePath1(downHank)
@@ -546,24 +751,24 @@ function init() {
     }
     function sweetMoves2() {
       const random = Math.floor(Math.random() * 20) + 1
-      if (cells[leftSteph].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftSteph].classList.contains('been-here2') === false)) {
+      if ((cells[leftSteph].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[leftSteph].classList.contains('been-here2') === false)) || ((cells[leftSteph].classList.contains('innerpath')) && sight2 === 'left')) {
         clearThePath2(rightSteph)
         clearThePath2(upSteph)
         clearThePath2(downSteph)
         stephPosition -= 1
         cells[stephPosition].classList.add('left')
-      } else if (cells[downSteph].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downSteph].classList.contains('been-here2') === false)) {
+      } else if ((cells[downSteph].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downSteph].classList.contains('been-here2') === false)) || ((cells[downSteph].classList.contains('innerpath')) && sight2 === 'down')) {
         clearThePath2(upSteph)
         clearThePath2(leftSteph)
         clearThePath2(rightSteph)
         stephPosition = stephPosition + 40
-      } else if (cells[rightSteph].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightSteph].classList.contains('been-here2') === false)) { 
+      } else if ((cells[rightSteph].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[rightSteph].classList.contains('been-here2') === false)) || ((cells[rightSteph].classList.contains('innerpath')) && sight2 === 'right')) { 
         clearThePath2(leftSteph)
         clearThePath2(upSteph)
         clearThePath2(downSteph)
         stephPosition += 1
         cells[stephPosition].classList.add('right')
-      } else if (cells[upSteph].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upSteph].classList.contains('been-here2') === false)) {
+      } else if ((cells[upSteph].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[upSteph].classList.contains('been-here2') === false)) || ((cells[upSteph].classList.contains('innerpath')) && sight2 === 'up')) {
         clearThePath2(downSteph)
         clearThePath2(leftSteph)
         clearThePath2(rightSteph)
@@ -596,25 +801,25 @@ function init() {
     }
     function sweetMoves3() {
       const random = Math.floor(Math.random() * 20) + 1
-      if (cells[leftCrake].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[leftCrake].classList.contains('been-here3') === false)) {
+      if ((cells[leftCrake].classList.contains('innerpath') && (random > 0 && random > 6) && (cells[leftCrake].classList.contains('been-here3') === false)) || ((cells[leftCrake].classList.contains('innerpath')) && sight3 === 'left')) {
         clearThePath3(rightCrake)
         clearThePath3(upCrake)
         clearThePath3(downCrake)
         crakePosition -= 1
         cells[crakePosition].classList.add('left')
-      } else if (cells[upCrake].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[upCrake].classList.contains('been-here3') === false)) {
+      } else if ((cells[upCrake].classList.contains('innerpath') && (random > 5 && random < 11) && (cells[upCrake].classList.contains('been-here3') === false)) || ((cells[upCrake].classList.contains('innerpath')) && sight3 === 'up')) {
         clearThePath3(downCrake)
         clearThePath3(leftCrake)
         clearThePath3(rightCrake)
         crakePosition = crakePosition - 40
         cells[crakePosition].classList.add('up')
-      } else if (cells[rightCrake].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[rightCrake].classList.contains('been-here3') === false)) { 
+      } else if ((cells[rightCrake].classList.contains('innerpath') && (random > 10 && random < 16) && (cells[rightCrake].classList.contains('been-here3') === false)) || ((cells[rightCrake].classList.contains('innerpath')) && sight3 === 'right')) { 
         clearThePath3(leftCrake)
         clearThePath3(upCrake)
         clearThePath3(downCrake)
         crakePosition += 1
         cells[crakePosition].classList.add('right')
-      } else if (cells[downCrake].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downCrake].classList.contains('been-here3') === false)) {
+      } else if ((cells[downCrake].classList.contains('innerpath') && (random > 15 && random < 21) && (cells[downCrake].classList.contains('been-here3') === false)) || ((cells[downCrake].classList.contains('innerpath')) && sight3 === 'down')) {
         clearThePath3(upCrake)
         clearThePath3(leftCrake)
         clearThePath3(rightCrake)
@@ -657,61 +862,7 @@ function init() {
     }
   }
 
-  function sightLines(leftEdge, rightEdge, identification) {
-    if (hackPosition > leftEdge && hackPosition < identification) {
-      console.log('seen you: left')
-    } else if (hackPosition < rightEdge && hackPosition > identification) {
-      console.log('seen you: right')
-    }
-    if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
-      console.log('seen you: up')
-    }
-    if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
-      console.log('seen you: down')
-    }
-  }
-
-  function smartMove(id) {
-    if (id > 81 && id < 118) {
-      sightLines(81, 118, id)
-    } else if (id > 121 && id < 158) {
-      sightLines(121, 158, id)
-    } else if (id > 161 && id < 198) {
-      sightLines(161, 198, id)
-    } else if (id > 201 && id < 238) {
-      sightLines(201, 238, id)
-    } else if (id > 241 && id < 278) {
-      sightLines(241, 278, id)
-    } else if (id > 281 && id < 318) {
-      sightLines(281, 318, id)
-    } else if (id > 321 && id < 358) {
-      sightLines(321, 358, id)
-    } else if (id > 361 && id < 398) {
-      sightLines(361, 398, id)
-    } else if (id > 401 && id < 438) {
-      sightLines(401, 438, id)
-    } else if (id > 441 && id < 478) {
-      sightLines(441, 478, id)
-    } else if (id > 481 && id < 518) {
-      sightLines(481, 518, id)
-    } else if (id > 521 && id < 558) {
-      sightLines(521, 558, id)
-    } else if (id > 561 && id < 598) {
-      sightLines(561, 598, id)
-    } else if (id > 601 && id < 638) {
-      sightLines(601, 638, id)
-    } else if (id > 641 && id < 678) {
-      sightLines(641, 678, id)
-    } else if (id > 681 && id < 718) {
-      sightLines(681, 718, id)
-    }  
-  }
-
   function moveEnd() {
-    smartMove(joshPosition)
-    smartMove(hankPosition)
-    smartMove(stephPosition)
-    smartMove(crakePosition)
     if (hackPosition === joshPosition || hackPosition === hankPosition || hackPosition === stephPosition || hackPosition === crakePosition) {
       killScreen()
     } else if (scoreActual !== 1455) {
@@ -730,7 +881,7 @@ function init() {
     addSteph(stephPosition)
     addCrake(crakePosition)
     document.addEventListener('keydown', handleKeyDown)
-    addBonus()
+    // addBonus()
   }
   function stopTheStartedParty() {
     clearInterval(party)
