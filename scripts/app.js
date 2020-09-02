@@ -10,7 +10,9 @@ function init() {
   const partySwitch = document.querySelector('#party')
   let party
   
-  let score = 0
+  let scoreActual = 0
+  let scoreBonus = 0
+  const score = scoreActual + scoreBonus
   const width = 32
   const height = 25
   const cellCount = width * (height)
@@ -201,7 +203,12 @@ function init() {
   function changeCell(position) {
     if (cells[position].classList.contains('painted') === false && cells[position].classList.contains('teleporter') === false) {
       cells[position].classList.add('painted')
-      score += 5
+      scoreActual += 5
+      scoreDisplay.textContent = score
+    }
+    if (cells[position].classList.contains('survivor') === true) {
+      cells[position].classList.remove('survivor')
+      scoreBonus += 200
       scoreDisplay.textContent = score
     }
   }
@@ -268,18 +275,15 @@ function init() {
     cells[position].classList.remove('crake')
   }
 
-  function createGrid(startingPosition, josh, hank, steph, crake) {
+  
+
+  function createGrid() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i
+      // cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
-    addHack(startingPosition)
-    addJosh(josh)
-    addHank(hank)
-    addSteph(steph)
-    addCrake(crake)
     addPath()
     addTeleports()
   }
@@ -287,15 +291,12 @@ function init() {
   function handleKeyDown(event) {
     removeHack(hackPosition)
     changeCell(hackPosition)
+    cells[hackPosition].classList.remove('left', 'up', 'down')
 
-    // const x = hackPosition % 40
-    // const y = Math.floor(hackPosition / 28)
-    // const path = document.querySelectorAll('.innerpath')
     const right = hackPosition + 1
     const left = hackPosition - 1
     const up = hackPosition - 40
     const down = hackPosition + 40
-    // console.log(right, left, up, down)
 
     switch (event.keyCode) {
       case 39:
@@ -303,12 +304,15 @@ function init() {
         break
       case 37:
         if (cells[left].classList.contains('innerpath') || cells[left].classList.contains('teleporter')) hackPosition--
+        cells[hackPosition].classList.add('left')
         break
       case 38:
         if (cells[up].classList.contains('innerpath') || cells[up].classList.contains('teleporter')) hackPosition = hackPosition - 40
+        cells[hackPosition].classList.add('up')
         break
       case 40:
-        if (cells[down].classList.contains('innerpath') || cells[down].classList.contains('teleporter')) hackPosition = hackPosition + 40
+        if (cells[down].classList.contains('innerpath') || cells[down].classList.contains('teleporter')) hackPosition = hackPosition + 40 
+        cells[hackPosition].classList.add('down')
         break
       case 190:
         if (hackPosition === 124) hackPosition = 220
@@ -322,20 +326,14 @@ function init() {
         if (hackPosition === 635) hackPosition = 649
         if (hackPosition === 316) hackPosition = 563
         break
-      case 16:
-        winScreen()
-        break
-      case 75:
-        killScreen()
-        break
       default:
-        addHack(hackPosition)
+        break
     }
     moveEnd()
   }
 
   function setBack() {
-    score = 0
+    scoreActual = 0
     scoreDisplay.textContent = score
     removeHack(hackPosition)
     hackPosition = 82
@@ -652,12 +650,15 @@ function init() {
       sightLines(681, 718, id)
     }  
   }
+
   function moveEnd() {
     smartMove(joshPosition)
     smartMove(hankPosition)
     smartMove(stephPosition)
     smartMove(crakePosition)
-    if (score !== 1455) {
+    if (hackPosition === joshPosition || hackPosition === hankPosition || hackPosition === stephPosition || hackPosition === crakePosition) {
+      killScreen()
+    } else if (scoreActual !== 1455) {
       addHack(hackPosition)
     } else {
       winScreen()
@@ -665,15 +666,27 @@ function init() {
   }
 
   function getThePartyStarted() {
+    clearInterval(party)
     party = setInterval(move, 300)
+    addHack(hackPosition)
+    addJosh(joshPosition)
+    addHank(hankPosition)
+    addSteph(stephPosition)
+    addCrake(crakePosition)
+    document.addEventListener('keydown', handleKeyDown)
   }
   function stopTheStartedParty() {
     clearInterval(party)
+    removeHack(hackPosition)
+    removeJosh(joshPosition)
+    removeHank(hankPosition)
+    removeSteph(stephPosition)
+    removeCrake(crakePosition)
+    document.removeEventListener('keydown', handleKeyDown)
   }
 
-  createGrid(hackPosition, joshPosition, hankPosition, stephPosition, crakePosition)
+  createGrid()
 
-  document.addEventListener('keydown', handleKeyDown)
   resetButton.addEventListener('click', setBack)
   partySwitch.addEventListener('click', getThePartyStarted)
 }

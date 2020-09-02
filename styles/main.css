@@ -77,6 +77,21 @@ body h1 {
   background-repeat: no-repeat;
 }
 
+.grid div.hack.innerpath.down {
+  transform: rotate(90deg);
+  background-size: cover;
+}
+
+.grid div.hack.innerpath.up {
+  transform: rotate(270deg);
+  background-size: cover;
+}
+
+.grid div.hack.innerpath.left {
+  transform: rotate(180deg);
+  background-size: cover;
+}
+
 .grid.remove-grid {
   display: none;
 }
@@ -108,7 +123,6 @@ body h1 {
   background-color: red;
 }
 
-
 .grid div.josh.innerpath {
   background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/josh.png');
   background-size: cover;
@@ -116,14 +130,17 @@ body h1 {
 
 .grid div.josh.innerpath.left {
   transform: rotate(90deg);
+  background-size: cover;
 }
 
 .grid div.josh.innerpath.right {
   transform: rotate(270deg);
+  background-size: cover;
 }
 
 .grid div.josh.innerpath.up {
   transform: rotate(180deg);
+  background-size: cover;
 }
 
 .grid div.hank.innerpath {
@@ -132,14 +149,17 @@ body h1 {
 }
 .grid div.hank.innerpath.left {
   transform: rotate(90deg);
+  background-size: cover;
 }
 
 .grid div.hank.innerpath.right {
   transform: rotate(270deg);
+  background-size: cover;
 }
 
 .grid div.hank.innerpath.up {
   transform: rotate(180deg);
+  background-size: cover;
 }
 
 .grid div.steph.innerpath {
@@ -148,14 +168,17 @@ body h1 {
 }
 .grid div.steph.innerpath.left {
   transform: rotate(90deg);
+  background-size: cover;
 }
 
 .grid div.steph.innerpath.right {
   transform: rotate(270deg);
+  background-size: cover;
 }
 
 .grid div.steph.innerpath.up {
   transform: rotate(180deg);
+  background-size: cover;
 }
 
 .grid div.crake.innerpath {
@@ -164,12 +187,15 @@ body h1 {
 }
 .grid div.crake.innerpath.left {
   transform: rotate(90deg);
+  background-size: cover;
 }
 
 .grid div.crake.innerpath.right {
   transform: rotate(270deg);
+  background-size: cover;
 }
 
 .grid div.crake.innerpath.up {
   transform: rotate(180deg);
+  background-size: cover;
 }
