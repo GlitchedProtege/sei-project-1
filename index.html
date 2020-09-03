@@ -10,13 +10,16 @@
 </head>
 <body>
   <h1>Clean Up Crew</h1>
+  <audio src='/Users/liam/Development/SEI50/projects/sei-project-1/assets/HackedMaster.wav' id='background'></audio>
   <p>Score : <span id='score'>0</span>
     <button id='party'>Mission Start</button>
-    <button id='reset'>Mission Reset</button>
+    <button id='pause' class='hidden'>Pause</button>
+    <button id='play' class='hidden'>Play</button>
+    <button id='reset'>Reset</button>
   <div class="grid-wrapper">
     <div class="grid"></div>
-    <div class='win-screen'>You win! Congratulations!</div>
-    <div class='kill-screen'>You lose! Congratulations!</div>
+    <div class='win-screen'>You win! Congratulations! Hit mission start to continue.</div>
+    <div class='kill-screen'>You lose! Try again.</div>
     <p>Instructions.</p>
     <p>Search the ship for survivors. Use the arrow keys to move. The blue squares teleport you to the other side of the screen. > to go right and < to go left. Check every square but watch out for the drones!</p>
   </div>

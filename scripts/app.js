@@ -8,8 +8,11 @@ function init() {
   const killer = document.querySelector('.kill-screen')
   const resetButton = document.querySelector('#reset')
   const partySwitch = document.querySelector('#party')
+  const pauseButton = document.querySelector('#pause')
+  const playButton = document.querySelector('#play')
   let party
   
+  const audio = document.querySelector('#background')
   let scoreActual = 0
   let scoreBonus = 0
   const score = 0
@@ -28,6 +31,20 @@ function init() {
   let gameTimer = null
   let timeCounted = 0
   let bonusPosition
+
+  function backgroundMusic() {
+    audio.play()
+    audio.loop = true
+  }
+
+  function pauseMusic() {
+    audio.pause()
+  }
+
+  function endMusic() {
+    audio.currentTime = 0
+    audio.pause()
+  }
 
   function timer(position) {
     if (timeCounted === 20) {
@@ -903,8 +920,28 @@ function init() {
   }
 
   function getThePartyStarted() {
+    removeHack(hackPosition)
+    hackPosition = 82
+    removeJosh(joshPosition)
+    removeHank(hankPosition)
+    removeSteph(stephPosition)
+    removeCrake(crakePosition)
+    joshPosition = 409
+    hankPosition = 168
+    stephPosition = 191
+    crakePosition = 591
+    for (let i = 0; i < cellCount; i++) {
+      cells[i].classList.remove('painted', 'been-here', 'been-here1', 'been-here2', 'been-here3')
+    }
+    playSpace.classList.remove('remove-grid')
+    winner.classList.remove('win')
+    killer.classList.remove('kill')
+    stopTheStartedParty()
+    trueEndTimer()
+    scoreBonus += scoreActual
+    scoreActual = 0
     clearInterval(party)
-    party = setInterval(move, 200)
+    party = setInterval(move, 250)
     addHack(hackPosition)
     addJosh(joshPosition)
     addHank(hankPosition)
@@ -912,7 +949,28 @@ function init() {
     addCrake(crakePosition)
     document.addEventListener('keydown', handleKeyDown)
     addBonus()
+    backgroundMusic()
+    pauseButton.classList.remove('hidden')
   }
+
+  function pauseParty() {
+    clearInterval(party)
+    trueEndTimer()
+    document.removeEventListener('keydown', handleKeyDown)
+    pauseMusic()
+    pauseButton.classList.add('hidden')
+    playButton.classList.remove('hidden')
+  }
+
+  function playParty() {
+    party = setInterval(move, 250)
+    addBonus()
+    document.addEventListener('keydown', handleKeyDown)
+    backgroundMusic()
+    playButton.classList.add('hidden')
+    pauseButton.classList.remove('hidden')
+  }
+
   function stopTheStartedParty() {
     clearInterval(party)
     removeHack(hackPosition)
@@ -921,11 +979,16 @@ function init() {
     removeSteph(stephPosition)
     removeCrake(crakePosition)
     document.removeEventListener('keydown', handleKeyDown)
+    endMusic()
+    pauseButton.classList.add('hidden')
+    playButton.classList.add('hidden')
   }
 
   createGrid()
 
   resetButton.addEventListener('click', setBack)
+  pauseButton.addEventListener('click', pauseParty)
+  playButton.addEventListener('click', playParty)
   partySwitch.addEventListener('click', getThePartyStarted)
 }
 
