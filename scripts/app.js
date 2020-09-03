@@ -25,59 +25,71 @@ function init() {
   let crakePosition = 591
 
 
-  // let gameTimer = null
-  // let timeCounted = 0
+  let gameTimer = null
+  let timeCounted = 0
 
-  // function timer(position) {
-  //   if (timeCounted === 10) {
-  //     cells[position].classList.add('survivor')
-  //   }
-  //   if (timeCounted === 15) {
-  //     cells[position].classList.remove('survivor')
-  //   }
-  //   if (timeCounted > 15) {
-  //     endTimer()
-  //     gameTimer = setInterval(() => {
-  //       addBonus()
-  //     }, 1000)
-  //   } else {
-  //     timeCounted++
-  //     console.log(timeCounted)
-  //   }
-  // }
+  function timer(position) {
+    if (timeCounted === 20) {
+      cells[position].classList.add('survivor')
+    }
+    if (timeCounted === 30) {
+      cells[position].classList.remove('survivor')
+    }
+    if (timeCounted > 30) {
+      endTimer()
+      timeCounted = 0
+      return
+      // gameTimer = setInterval(() => {
+      // }, 1000)
+    } else {
+      timeCounted++
+      console.log(timeCounted)
+    }
+  }
 
-  // function endTimer() {
-  //   clearInterval(gameTimer)
-  // }
+  function endTimer() {
+    clearInterval(gameTimer)
+    splitTimer()
+  }
 
+  function trueEndTimer() {
+    clearInterval(gameTimer)
+    gameTimer = null
+    timeCounted = 0
+  }
 
-  // function addBonus() {
-  //   const random = Math.floor(Math.random() * 10) + 1
-  //   console.log(random)
-  //   gameTimer = setInterval(() => {
-  //     if (random === 1) {
-  //       timer(424)
-  //     } else if (random === 2) {
-  //       timer(576)
-  //     } else if (random === 3) {
-  //       timer(100)
-  //     } else if (random === 4) {
-  //       timer(299)
-  //     } else if (random === 5) {
-  //       timer(500)
-  //     } else if (random === 6) {
-  //       timer(659)
-  //     } else if (random === 7) {
-  //       timer(246)
-  //     } else if (random === 8) {
-  //       timer(273)
-  //     } else if (random === 9) {
-  //       timer(364)
-  //     } else {
-  //       timer(395)
-  //     }
-  //   }, 1000)
-  // }
+  function splitTimer() {
+    gameTimer = null
+    addBonus()
+  }
+
+  function addBonus() {
+    const random = Math.floor(Math.random() * 10) + 1
+    console.log(random)
+    gameTimer = setInterval(() => {
+      if (random === 1) {
+        timer(424)
+      } else if (random === 2) {
+        timer(576)
+      } else if (random === 3) {
+        timer(100)
+      } else if (random === 4) {
+        timer(299)
+      } else if (random === 5) {
+        timer(500)
+      } else if (random === 6) {
+        timer(659)
+      } else if (random === 7) {
+        timer(246)
+      } else if (random === 8) {
+        timer(273)
+      } else if (random === 9) {
+        timer(364)
+      } else {
+        timer(395)
+      }
+    }, 1000)
+  }
 
   function addPath() {
     const maze = cells.slice(82, 96)
@@ -413,6 +425,7 @@ function init() {
     winner.classList.remove('win')
     killer.classList.remove('kill')
     stopTheStartedParty()
+    trueEndTimer()
   }
 
 
@@ -881,7 +894,7 @@ function init() {
     addSteph(stephPosition)
     addCrake(crakePosition)
     document.addEventListener('keydown', handleKeyDown)
-    // addBonus()
+    addBonus()
   }
   function stopTheStartedParty() {
     clearInterval(party)
