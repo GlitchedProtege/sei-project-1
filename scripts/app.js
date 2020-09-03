@@ -3,9 +3,11 @@ function init() {
   const grid = document.querySelector('.grid')
   const cells = []
   const scoreDisplay = document.querySelector('#score')
+  const finalScore = document.querySelector('.kill-score')
   const playSpace = document.querySelector('.grid')
   const winner = document.querySelector('.win-screen')
   const killer = document.querySelector('.kill-screen')
+  const secondKiller = document.querySelector('.second-kill-screen')
   const resetButton = document.querySelector('#reset')
   const partySwitch = document.querySelector('#party')
   const pauseButton = document.querySelector('#pause')
@@ -32,6 +34,46 @@ function init() {
   let timeCounted = 0
   let bonusPosition
 
+  let buffTimer = null
+  let buffTime = 0
+
+  // let gunTimer = null
+  // let gunTime = 0
+
+  function powerupBuff() {
+    cells[666].classList.add('power')
+    cells[651].classList.add('power')
+    cells[135].classList.add('power')
+    cells[273].classList.add('power')
+  }
+  function powerDownBuff() {
+    cells[666].classList.remove('power')
+    cells[651].classList.remove('power')
+    cells[135].classList.remove('power')
+    cells[273].classList.remove('power')
+  }
+
+  function powerDownBuffSpecific(position) {
+    cells[position].classList.remove('power')
+  }
+
+  // function powerupGun() {
+  //   cells[135].classList.add('gun')
+  //   cells[144].classList.add('gun')
+  //   cells[246].classList.add('gun')
+  //   cells[273].classList.add('gun')
+  // }
+  // function powerDownGun() {
+  //   cells[135].classList.remove('gun')
+  //   cells[144].classList.remove('gun')
+  //   cells[246].classList.remove('gun')
+  //   cells[273].classList.remove('gun')
+  // }
+
+  // function powerDownGunSpecific(position) {
+  //   cells[position].classList.remove('gun')
+  // }
+
   function backgroundMusic() {
     audio.play()
     audio.loop = true
@@ -53,6 +95,7 @@ function init() {
     if (timeCounted === 30) {
       cells[position].classList.remove('survivor')
       cells[position].classList.remove('saved')
+      bonusPosition = 0
     }
     if (timeCounted > 30) {
       endTimer()
@@ -289,13 +332,35 @@ function init() {
   function winScreen() {
     playSpace.classList.add('remove-grid')
     winner.classList.add('win')
+    trueEndTimer()
+    clearInterval(party)
+    document.removeEventListener('keydown', handleKeyDown)
   }
 
   function killScreen() {
     playSpace.classList.add('remove-grid')
     killer.classList.add('kill')
+    finalScore.textContent = scoreBonus + scoreActual
+    scoreActual = 0
+    scoreBonus = 0
+    scoreDisplay.textContent = scoreBonus + scoreActual
+    trueEndTimer()
+    clearInterval(party)
+    document.removeEventListener('keydown', handleKeyDown)
   }
 
+  function killScreenTwo() {
+    playSpace.classList.add('remove-grid')
+    secondKiller.classList.add('kill')
+    finalScore.textContent = scoreBonus + scoreActual
+    scoreActual = 0
+    scoreBonus = 0
+    scoreDisplay.textContent = scoreBonus + scoreActual
+    trueEndTimer()
+    clearInterval(party)
+    document.removeEventListener('keydown', handleKeyDown)
+
+  }
 
   function addHack(position) {
     cells[position].classList.add('hack')
@@ -380,7 +445,7 @@ function init() {
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      // cell.textContent = i
+      cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -393,11 +458,10 @@ function init() {
     removeHack(hackPosition)
     changeCell(hackPosition)
     cells[hackPosition].classList.remove('left', 'up', 'down')
-
-    const right = hackPosition + 1
-    const left = hackPosition - 1
-    const up = hackPosition - 40
-    const down = hackPosition + 40
+    const right = (hackPosition + 1)
+    const left = (hackPosition - 1)
+    const up = (hackPosition - 40)
+    const down = (hackPosition + 40)
 
     switch (event.keyCode) {
       case 39:
@@ -457,212 +521,219 @@ function init() {
     playSpace.classList.remove('remove-grid')
     winner.classList.remove('win')
     killer.classList.remove('kill')
+    secondKiller.classList.remove('kill')
     stopTheStartedParty()
     trueEndTimer()
+    cells[bonusPosition].classList.remove('survivor')
+    cells[bonusPosition].classList.remove('saved')
+    bonusPosition = 0
+    endMusic()
+    powerDownBuff()
+    // powerDownGun()
   }
 
 
+  let sight
+  let sight1
+  let sight2
+  let sight3
+
+  function smartMove(id) {
+    if (id > 81 && id < 118) {
+      sightLines(81, 118, id)
+    } else if (id > 121 && id < 158) {
+      sightLines(121, 158, id)
+    } else if (id > 161 && id < 198) {
+      sightLines(161, 198, id)
+    } else if (id > 201 && id < 238) {
+      sightLines(201, 238, id)
+    } else if (id > 241 && id < 278) {
+      sightLines(241, 278, id)
+    } else if (id > 281 && id < 318) {
+      sightLines(281, 318, id)
+    } else if (id > 321 && id < 358) {
+      sightLines(321, 358, id)
+    } else if (id > 361 && id < 398) {
+      sightLines(361, 398, id)
+    } else if (id > 401 && id < 438) {
+      sightLines(401, 438, id)
+    } else if (id > 441 && id < 478) {
+      sightLines(441, 478, id)
+    } else if (id > 481 && id < 518) {
+      sightLines(481, 518, id)
+    } else if (id > 521 && id < 558) {
+      sightLines(521, 558, id)
+    } else if (id > 561 && id < 598) {
+      sightLines(561, 598, id)
+    } else if (id > 601 && id < 638) {
+      sightLines(601, 638, id)
+    } else if (id > 641 && id < 678) {
+      sightLines(641, 678, id)
+    } else if (id > 681 && id < 718) {
+      sightLines(681, 718, id)
+    }  
+  }
+  function smartMove1(id) {
+    if (id > 81 && id < 118) {
+      sightLines1(81, 118, id)
+    } else if (id > 121 && id < 158) {
+      sightLines1(121, 158, id)
+    } else if (id > 161 && id < 198) {
+      sightLines1(161, 198, id)
+    } else if (id > 201 && id < 238) {
+      sightLines1(201, 238, id)
+    } else if (id > 241 && id < 278) {
+      sightLines1(241, 278, id)
+    } else if (id > 281 && id < 318) {
+      sightLines1(281, 318, id)
+    } else if (id > 321 && id < 358) {
+      sightLines1(321, 358, id)
+    } else if (id > 361 && id < 398) {
+      sightLines1(361, 398, id)
+    } else if (id > 401 && id < 438) {
+      sightLines1(401, 438, id)
+    } else if (id > 441 && id < 478) {
+      sightLines1(441, 478, id)
+    } else if (id > 481 && id < 518) {
+      sightLines1(481, 518, id)
+    } else if (id > 521 && id < 558) {
+      sightLines1(521, 558, id)
+    } else if (id > 561 && id < 598) {
+      sightLines1(561, 598, id)
+    } else if (id > 601 && id < 638) {
+      sightLines1(601, 638, id)
+    } else if (id > 641 && id < 678) {
+      sightLines1(641, 678, id)
+    } else if (id > 681 && id < 718) {
+      sightLines1(681, 718, id)
+    }  
+  }
+  function smartMove2(id) {
+    if (id > 81 && id < 118) {
+      sightLines2(81, 118, id)
+    } else if (id > 121 && id < 158) {
+      sightLines2(121, 158, id)
+    } else if (id > 161 && id < 198) {
+      sightLines2(161, 198, id)
+    } else if (id > 201 && id < 238) {
+      sightLines2(201, 238, id)
+    } else if (id > 241 && id < 278) {
+      sightLines2(241, 278, id)
+    } else if (id > 281 && id < 318) {
+      sightLines2(281, 318, id)
+    } else if (id > 321 && id < 358) {
+      sightLines2(321, 358, id)
+    } else if (id > 361 && id < 398) {
+      sightLines2(361, 398, id)
+    } else if (id > 401 && id < 438) {
+      sightLines2(401, 438, id)
+    } else if (id > 441 && id < 478) {
+      sightLines2(441, 478, id)
+    } else if (id > 481 && id < 518) {
+      sightLines2(481, 518, id)
+    } else if (id > 521 && id < 558) {
+      sightLines2(521, 558, id)
+    } else if (id > 561 && id < 598) {
+      sightLines2(561, 598, id)
+    } else if (id > 601 && id < 638) {
+      sightLines2(601, 638, id)
+    } else if (id > 641 && id < 678) {
+      sightLines2(641, 678, id)
+    } else if (id > 681 && id < 718) {
+      sightLines2(681, 718, id)
+    }  
+  }
+  function smartMove3(id) {
+    if (id > 81 && id < 118) {
+      sightLines3(81, 118, id)
+    } else if (id > 121 && id < 158) {
+      sightLines3(121, 158, id)
+    } else if (id > 161 && id < 198) {
+      sightLines3(161, 198, id)
+    } else if (id > 201 && id < 238) {
+      sightLines3(201, 238, id)
+    } else if (id > 241 && id < 278) {
+      sightLines3(241, 278, id)
+    } else if (id > 281 && id < 318) {
+      sightLines3(281, 318, id)
+    } else if (id > 321 && id < 358) {
+      sightLines3(321, 358, id)
+    } else if (id > 361 && id < 398) {
+      sightLines3(361, 398, id)
+    } else if (id > 401 && id < 438) {
+      sightLines3(401, 438, id)
+    } else if (id > 441 && id < 478) {
+      sightLines3(441, 478, id)
+    } else if (id > 481 && id < 518) {
+      sightLines3(481, 518, id)
+    } else if (id > 521 && id < 558) {
+      sightLines3(521, 558, id)
+    } else if (id > 561 && id < 598) {
+      sightLines3(561, 598, id)
+    } else if (id > 601 && id < 638) {
+      sightLines3(601, 638, id)
+    } else if (id > 641 && id < 678) {
+      sightLines3(641, 678, id)
+    } else if (id > 681 && id < 718) {
+      sightLines3(681, 718, id)
+    }  
+  }
+
+  function sightLines(leftEdge, rightEdge, identification) {
+    if (hackPosition > leftEdge && hackPosition < identification) {
+      sight = 'left'
+    } else if (hackPosition < rightEdge && hackPosition > identification) {
+      sight = 'right'
+    }
+    if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
+      sight = 'up'
+    }
+    if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
+      sight = 'down'
+    }
+  }
+  function sightLines1(leftEdge, rightEdge, identification) {
+    if (hackPosition > leftEdge && hackPosition < identification) {
+      sight1 = 'left'
+    } else if (hackPosition < rightEdge && hackPosition > identification) {
+      sight1 = 'right'
+    }
+    if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
+      sight1 = 'up'
+    }
+    if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
+      sight1 = 'down'
+    }
+  }
+  function sightLines2(leftEdge, rightEdge, identification) {
+    if (hackPosition > leftEdge && hackPosition < identification) {
+      sight2 = 'left'
+    } else if (hackPosition < rightEdge && hackPosition > identification) {
+      sight2 = 'right'
+    }
+    if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
+      sight2 = 'up'
+    }
+    if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
+      sight2 = 'down'
+    }
+  }
+  function sightLines3(leftEdge, rightEdge, identification) {
+    if (hackPosition > leftEdge && hackPosition < identification) {
+      sight3 = 'left'
+    } else if (hackPosition < rightEdge && hackPosition > identification) {
+      sight3 = 'right'
+    }
+    if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
+      sight3 = 'up'
+    }
+    if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
+      console.log('seen you: down')
+      sight3 = 'down'
+    }
+  }
   function move() {
 
-    function smartMove(id) {
-      if (id > 81 && id < 118) {
-        sightLines(81, 118, id)
-      } else if (id > 121 && id < 158) {
-        sightLines(121, 158, id)
-      } else if (id > 161 && id < 198) {
-        sightLines(161, 198, id)
-      } else if (id > 201 && id < 238) {
-        sightLines(201, 238, id)
-      } else if (id > 241 && id < 278) {
-        sightLines(241, 278, id)
-      } else if (id > 281 && id < 318) {
-        sightLines(281, 318, id)
-      } else if (id > 321 && id < 358) {
-        sightLines(321, 358, id)
-      } else if (id > 361 && id < 398) {
-        sightLines(361, 398, id)
-      } else if (id > 401 && id < 438) {
-        sightLines(401, 438, id)
-      } else if (id > 441 && id < 478) {
-        sightLines(441, 478, id)
-      } else if (id > 481 && id < 518) {
-        sightLines(481, 518, id)
-      } else if (id > 521 && id < 558) {
-        sightLines(521, 558, id)
-      } else if (id > 561 && id < 598) {
-        sightLines(561, 598, id)
-      } else if (id > 601 && id < 638) {
-        sightLines(601, 638, id)
-      } else if (id > 641 && id < 678) {
-        sightLines(641, 678, id)
-      } else if (id > 681 && id < 718) {
-        sightLines(681, 718, id)
-      }  
-    }
-    function smartMove1(id) {
-      if (id > 81 && id < 118) {
-        sightLines1(81, 118, id)
-      } else if (id > 121 && id < 158) {
-        sightLines1(121, 158, id)
-      } else if (id > 161 && id < 198) {
-        sightLines1(161, 198, id)
-      } else if (id > 201 && id < 238) {
-        sightLines1(201, 238, id)
-      } else if (id > 241 && id < 278) {
-        sightLines1(241, 278, id)
-      } else if (id > 281 && id < 318) {
-        sightLines1(281, 318, id)
-      } else if (id > 321 && id < 358) {
-        sightLines1(321, 358, id)
-      } else if (id > 361 && id < 398) {
-        sightLines1(361, 398, id)
-      } else if (id > 401 && id < 438) {
-        sightLines1(401, 438, id)
-      } else if (id > 441 && id < 478) {
-        sightLines1(441, 478, id)
-      } else if (id > 481 && id < 518) {
-        sightLines1(481, 518, id)
-      } else if (id > 521 && id < 558) {
-        sightLines1(521, 558, id)
-      } else if (id > 561 && id < 598) {
-        sightLines1(561, 598, id)
-      } else if (id > 601 && id < 638) {
-        sightLines1(601, 638, id)
-      } else if (id > 641 && id < 678) {
-        sightLines1(641, 678, id)
-      } else if (id > 681 && id < 718) {
-        sightLines1(681, 718, id)
-      }  
-    }
-    function smartMove2(id) {
-      if (id > 81 && id < 118) {
-        sightLines2(81, 118, id)
-      } else if (id > 121 && id < 158) {
-        sightLines2(121, 158, id)
-      } else if (id > 161 && id < 198) {
-        sightLines2(161, 198, id)
-      } else if (id > 201 && id < 238) {
-        sightLines2(201, 238, id)
-      } else if (id > 241 && id < 278) {
-        sightLines2(241, 278, id)
-      } else if (id > 281 && id < 318) {
-        sightLines2(281, 318, id)
-      } else if (id > 321 && id < 358) {
-        sightLines2(321, 358, id)
-      } else if (id > 361 && id < 398) {
-        sightLines2(361, 398, id)
-      } else if (id > 401 && id < 438) {
-        sightLines2(401, 438, id)
-      } else if (id > 441 && id < 478) {
-        sightLines2(441, 478, id)
-      } else if (id > 481 && id < 518) {
-        sightLines2(481, 518, id)
-      } else if (id > 521 && id < 558) {
-        sightLines2(521, 558, id)
-      } else if (id > 561 && id < 598) {
-        sightLines2(561, 598, id)
-      } else if (id > 601 && id < 638) {
-        sightLines2(601, 638, id)
-      } else if (id > 641 && id < 678) {
-        sightLines2(641, 678, id)
-      } else if (id > 681 && id < 718) {
-        sightLines2(681, 718, id)
-      }  
-    }
-    function smartMove3(id) {
-      if (id > 81 && id < 118) {
-        sightLines3(81, 118, id)
-      } else if (id > 121 && id < 158) {
-        sightLines3(121, 158, id)
-      } else if (id > 161 && id < 198) {
-        sightLines3(161, 198, id)
-      } else if (id > 201 && id < 238) {
-        sightLines3(201, 238, id)
-      } else if (id > 241 && id < 278) {
-        sightLines3(241, 278, id)
-      } else if (id > 281 && id < 318) {
-        sightLines3(281, 318, id)
-      } else if (id > 321 && id < 358) {
-        sightLines3(321, 358, id)
-      } else if (id > 361 && id < 398) {
-        sightLines3(361, 398, id)
-      } else if (id > 401 && id < 438) {
-        sightLines3(401, 438, id)
-      } else if (id > 441 && id < 478) {
-        sightLines3(441, 478, id)
-      } else if (id > 481 && id < 518) {
-        sightLines3(481, 518, id)
-      } else if (id > 521 && id < 558) {
-        sightLines3(521, 558, id)
-      } else if (id > 561 && id < 598) {
-        sightLines3(561, 598, id)
-      } else if (id > 601 && id < 638) {
-        sightLines3(601, 638, id)
-      } else if (id > 641 && id < 678) {
-        sightLines3(641, 678, id)
-      } else if (id > 681 && id < 718) {
-        sightLines3(681, 718, id)
-      }  
-    }
-
-    let sight
-    let sight1
-    let sight2
-    let sight3
-
-    function sightLines(leftEdge, rightEdge, identification) {
-      if (hackPosition > leftEdge && hackPosition < identification) {
-        sight = 'left'
-      } else if (hackPosition < rightEdge && hackPosition > identification) {
-        sight = 'right'
-      }
-      if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
-        sight = 'up'
-      }
-      if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
-        sight = 'down'
-      }
-    }
-    function sightLines1(leftEdge, rightEdge, identification) {
-      if (hackPosition > leftEdge && hackPosition < identification) {
-        sight1 = 'left'
-      } else if (hackPosition < rightEdge && hackPosition > identification) {
-        sight1 = 'right'
-      }
-      if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
-        sight1 = 'up'
-      }
-      if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
-        sight1 = 'down'
-      }
-    }
-    function sightLines2(leftEdge, rightEdge, identification) {
-      if (hackPosition > leftEdge && hackPosition < identification) {
-        sight2 = 'left'
-      } else if (hackPosition < rightEdge && hackPosition > identification) {
-        sight2 = 'right'
-      }
-      if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
-        sight2 = 'up'
-      }
-      if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
-        sight2 = 'down'
-      }
-    }
-    function sightLines3(leftEdge, rightEdge, identification) {
-      if (hackPosition > leftEdge && hackPosition < identification) {
-        sight3 = 'left'
-      } else if (hackPosition < rightEdge && hackPosition > identification) {
-        sight3 = 'right'
-      }
-      if (hackPosition === identification - 40 || hackPosition === identification - 80 || hackPosition === identification - 120 || hackPosition === identification - 120 || hackPosition === identification - 200 || hackPosition === identification - 240 || hackPosition === identification - 280 || hackPosition === identification - 320 || hackPosition === identification - 360 || hackPosition === identification - 400 || hackPosition === identification - 440 || hackPosition === identification - 480 || hackPosition === identification - 520 || hackPosition === identification - 560 || hackPosition === identification - 600) {
-        sight3 = 'up'
-      }
-      if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
-        console.log('seen you: down')
-        sight3 = 'down'
-      }
-    }
     smartMove(joshPosition)
     smartMove1(hankPosition)
     smartMove2(stephPosition)
@@ -903,13 +974,57 @@ function init() {
     addHank(hankPosition)
     addSteph(stephPosition)
     addCrake(crakePosition)
-    if (hackPosition === joshPosition || hackPosition === hankPosition || hackPosition === stephPosition || hackPosition === crakePosition) {
+    smartMove(joshPosition)
+    smartMove1(hankPosition)
+    smartMove2(stephPosition)
+    smartMove3(crakePosition)
+    if ((hackPosition === joshPosition) && (buffTime !== 0)) {
+      clearThePath(joshPosition)
+      removeJosh(joshPosition)
+      joshPosition = 409
+    } else if ((hackPosition === hankPosition) && (buffTime !== 0)) {
+      clearThePath1(hankPosition)
+      removeHank(hankPosition)
+      hankPosition = 168
+    } else if ((hackPosition === stephPosition) && (buffTime !== 0)) {
+      clearThePath2(stephPosition)
+      removeSteph(stephPosition)
+      stephPosition = 191
+    } else if ((hackPosition === crakePosition) && (buffTime !== 0)) {
+      clearThePath3(crakePosition)
+      removeCrake(crakePosition)
+      crakePosition = 591
+    } else if (hackPosition === joshPosition || hackPosition === hankPosition || hackPosition === stephPosition || hackPosition === crakePosition) {
       killScreen()
     }
   }
 
   function moveEnd() {
-    if (hackPosition === joshPosition || hackPosition === hankPosition || hackPosition === stephPosition || hackPosition === crakePosition) {
+    if ((hackPosition === 666 || hackPosition === 651 || hackPosition === 135 || hackPosition === 273) && (buffTime !== 0)) {
+      killScreenTwo()
+    } else if (hackPosition === 666 || hackPosition === 651 || hackPosition === 135 || hackPosition === 273) {
+      powerDownBuffSpecific(hackPosition)
+      buffHack()
+    // } else if (hackPosition === 135 || hackPosition === 144 || hackPosition === 246 || hackPosition === 273) {
+    //   powerDownGunSpecific(hackPosition)
+    //   gunHack()
+    } else if ((hackPosition === joshPosition) && (buffTime !== 0)) {
+      clearThePath(joshPosition)
+      removeJosh(joshPosition)
+      joshPosition = 409
+    } else if ((hackPosition === hankPosition) && (buffTime !== 0)) {
+      clearThePath1(hankPosition)
+      removeHank(hankPosition)
+      hankPosition = 168
+    } else if ((hackPosition === stephPosition) && (buffTime !== 0)) {
+      clearThePath2(stephPosition)
+      removeSteph(stephPosition)
+      stephPosition = 191
+    } else if ((hackPosition === crakePosition) && (buffTime !== 0)) {
+      clearThePath3(crakePosition)
+      removeCrake(crakePosition)
+      crakePosition = 591
+    } else if (hackPosition === joshPosition || hackPosition === hankPosition || hackPosition === stephPosition || hackPosition === crakePosition) {
       killScreen()
     } else if (scoreActual !== 1455) {
       addHack(hackPosition)
@@ -919,6 +1034,47 @@ function init() {
     }
   }
 
+  // function gunHack() {
+  //   gunTimer = setInterval(() => {
+  //     const right = (hackPosition + 1)
+  //     const left = (hackPosition - 1)
+  //     const up = (hackPosition - 40)
+  //     const down = (hackPosition + 40)
+  //     cells[hackPosition].classList.add('power-gun')
+  //     cells[right].classList.remove('power-gun')
+  //     cells[left].classList.remove('power-gun')
+  //     cells[up].classList.remove('power-gun')
+  //     cells[down].classList.remove('power-gun')
+  //     if (gunTime === 10) {
+  //       clearInterval(gunTimer)
+  //       gunTimer = null
+  //       gunTime = 0
+  //       return
+  //     }
+  //     gunTime++
+  //     console.log(gunTime)
+  //   }, 10)
+  // }
+  function buffHack() {
+    buffTimer = setInterval(() => {
+      const right = (hackPosition + 1)
+      const left = (hackPosition - 1)
+      const up = (hackPosition - 40)
+      const down = (hackPosition + 40)
+      cells[hackPosition].classList.add('power-buff')
+      cells[right].classList.remove('power-buff')
+      cells[left].classList.remove('power-buff')
+      cells[up].classList.remove('power-buff')
+      cells[down].classList.remove('power-buff')
+      if (buffTime === 100) {
+        clearInterval(buffTimer)
+        buffTimer = null
+        buffTime = 0
+      }
+      buffTime++
+      console.log(buffTime)
+    }, 100)
+  }
   function getThePartyStarted() {
     removeHack(hackPosition)
     hackPosition = 82
@@ -936,6 +1092,7 @@ function init() {
     playSpace.classList.remove('remove-grid')
     winner.classList.remove('win')
     killer.classList.remove('kill')
+    secondKiller.classList.remove('kill')
     stopTheStartedParty()
     trueEndTimer()
     scoreBonus += scoreActual
@@ -951,15 +1108,23 @@ function init() {
     addBonus()
     backgroundMusic()
     pauseButton.classList.remove('hidden')
+    powerupBuff()
+    clearInterval(buffTimer)
+    buffTimer = null
+    buffTime = 0
+    // powerupGun()
   }
 
   function pauseParty() {
-    clearInterval(party)
     trueEndTimer()
+    clearInterval(party)
     document.removeEventListener('keydown', handleKeyDown)
     pauseMusic()
     pauseButton.classList.add('hidden')
     playButton.classList.remove('hidden')
+    clearInterval(buffTimer)
+    buffTimer = null
+    buffTime = 0
   }
 
   function playParty() {
@@ -979,9 +1144,11 @@ function init() {
     removeSteph(stephPosition)
     removeCrake(crakePosition)
     document.removeEventListener('keydown', handleKeyDown)
-    endMusic()
     pauseButton.classList.add('hidden')
     playButton.classList.add('hidden')
+    clearInterval(buffTimer)
+    buffTimer = null
+    buffTime = 0
   }
 
   createGrid()
