@@ -204,3 +204,8 @@ body h1 {
   background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/survivor.png');
   background-size: cover;
 }
+
+.grid div.innerpath.saved {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/saved.png');
+  background-size: cover;
+}

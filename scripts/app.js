@@ -12,7 +12,7 @@ function init() {
   
   let scoreActual = 0
   let scoreBonus = 0
-  const score = scoreActual + scoreBonus
+  const score = 0
   const width = 32
   const height = 25
   const cellCount = width * (height)
@@ -27,6 +27,7 @@ function init() {
 
   let gameTimer = null
   let timeCounted = 0
+  let bonusPosition
 
   function timer(position) {
     if (timeCounted === 20) {
@@ -34,6 +35,7 @@ function init() {
     }
     if (timeCounted === 30) {
       cells[position].classList.remove('survivor')
+      cells[position].classList.remove('saved')
     }
     if (timeCounted > 30) {
       endTimer()
@@ -68,27 +70,46 @@ function init() {
     console.log(random)
     gameTimer = setInterval(() => {
       if (random === 1) {
-        timer(424)
+        bonusPosition = 424
+        timer(bonusPosition)
       } else if (random === 2) {
-        timer(576)
+        bonusPosition = 576
+        timer(bonusPosition)
       } else if (random === 3) {
-        timer(100)
+        bonusPosition = 100
+        timer(bonusPosition)
       } else if (random === 4) {
-        timer(299)
+        bonusPosition = 299
+        timer(bonusPosition)
       } else if (random === 5) {
-        timer(500)
+        bonusPosition = 500
+        timer(bonusPosition)
       } else if (random === 6) {
-        timer(659)
+        bonusPosition = 659
+        timer(bonusPosition)
       } else if (random === 7) {
-        timer(246)
+        bonusPosition = 246
+        timer(bonusPosition)
       } else if (random === 8) {
-        timer(273)
+        bonusPosition = 273
+        timer(bonusPosition)
       } else if (random === 9) {
-        timer(364)
+        bonusPosition = 364
+        timer(bonusPosition)
       } else {
-        timer(395)
+        bonusPosition = 395
+        timer(bonusPosition)
       }
     }, 1000)
+  }
+
+  function getBonus() {
+    if (hackPosition === bonusPosition) {
+      cells[bonusPosition].classList.remove('survivor')
+      cells[bonusPosition].classList.add('saved')
+      scoreBonus += 200
+      scoreDisplay.textContent = scoreBonus + scoreActual
+    }
   }
 
   function addPath() {
@@ -271,12 +292,7 @@ function init() {
     if (cells[position].classList.contains('painted') === false && cells[position].classList.contains('teleporter') === false) {
       cells[position].classList.add('painted')
       scoreActual += 5
-      scoreDisplay.textContent = score
-    }
-    if (cells[position].classList.contains('survivor') === true) {
-      cells[position].classList.remove('survivor')
-      scoreBonus += 200
-      scoreDisplay.textContent = score
+      scoreDisplay.textContent = scoreBonus + scoreActual
     }
   }
 
@@ -880,6 +896,7 @@ function init() {
       killScreen()
     } else if (scoreActual !== 1455) {
       addHack(hackPosition)
+      getBonus()
     } else {
       winScreen()
     }
