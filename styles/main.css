@@ -82,21 +82,21 @@ body h1 {
 
 
 .grid div.hack.teleporter {
-  background-image: url('./assets/unbuffed.png');
+  background-image: image('../assets/unbuffed.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-color: lightblue;
 }
 
 .grid div.teleporter.other-one {
-  background-image: url('./assets/boom.png');
+  background-image: image('./assets/boom.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 
 .grid div.hack.innerpath {
-  background-image: url('./assets/unbuffed.png');
+  background-image: image('../assets/unbuffed.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -117,7 +117,7 @@ body h1 {
 }
 
 .grid div.hack.innerpath.power-buff {
-  background-image: url('./assets/powerbuff.png');
+  background-image: image('../assets/powerbuff.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -138,7 +138,7 @@ body h1 {
 }
 
 .hack-death {
-  background-image: url('.assets/death spin.png');
+  background-image: image('../assets/death spin.png');
   transform: none;
   background-size: contain;
 }
@@ -175,7 +175,7 @@ body h1 {
 }
 
 .grid div.josh.innerpath {
-  background-image: url('./assets/josh.png');
+  background-image: image('../assets/josh.png');
   background-size: cover;
 }
 
@@ -195,7 +195,7 @@ body h1 {
 }
 
 .grid div.hank.innerpath {
-  background-image: url('./assets/hank.png');
+  background-image: image('../assets/hank.png');
   background-size: cover;
 }
 .grid div.hank.innerpath.left {
@@ -214,7 +214,7 @@ body h1 {
 }
 
 .grid div.steph.innerpath {
-  background-image: url('./assets/steph.png');
+  background-image: image('./assets/steph.png');
   background-size: cover;
 }
 .grid div.steph.innerpath.left {
@@ -233,7 +233,7 @@ body h1 {
 }
 
 .grid div.crake.innerpath {
-  background-image: url('./assets/crake.png');
+  background-image: image('../assets/crake.png');
   background-size: cover;
 }
 .grid div.crake.innerpath.left {
@@ -252,7 +252,7 @@ body h1 {
 }
 
 .grid div.innerpath.survivor {
-  background-image: url('./assets/survivor.png');
+  background-image: image('../assets/survivor.png');
   background-size: cover;
 }
 .grid div.innerpath.hack.survivor {
@@ -277,7 +277,7 @@ body h1 {
 }
 
 .grid div.innerpath.saved {
-  background-image: url('./assets/saved.png');
+  background-image: image('../assets/saved.png');
   background-size: cover;
 }
 .grid div.innerpath.hack.saved {
@@ -302,7 +302,7 @@ body h1 {
 }
 
 .grid div.innerpath.power {
-  background-image: url('./assets/power.png');
+  background-image: image('../assets/power.png');
   background-size: contain;
 }
 .grid div.innerpath.hack.power {
@@ -327,7 +327,7 @@ body h1 {
 }
 
 .drone-death {
-  background-image: url('./assets/boom2.png');
+  background-image: image('../assets/boom2.png');
   background-size: contain;
 }
 
