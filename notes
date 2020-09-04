@@ -1,0 +1,74 @@
+    <!-- <div class='second-kill-screen'>You cant just pick up any old drugs off of the floor! You lose! <span class='kill-score'></span>Try pacing yourself.</div> -->
+
+        // secondKiller.classList.remove('kill')
+
+          // function gunHack() {
+  //   gunTimer = setInterval(() => {
+  //     const right = (hackPosition + 1)
+  //     const left = (hackPosition - 1)
+  //     const up = (hackPosition - 40)
+  //     const down = (hackPosition + 40)
+  //     cells[hackPosition].classList.add('power-gun')
+  //     cells[right].classList.remove('power-gun')
+  //     cells[left].classList.remove('power-gun')
+  //     cells[up].classList.remove('power-gun')
+  //     cells[down].classList.remove('power-gun')
+  //     if (gunTime === 10) {
+  //       clearInterval(gunTimer)
+  //       gunTimer = null
+  //       gunTime = 0
+  //       return
+  //     }
+  //     gunTime++
+  //     console.log(gunTime)
+  //   }, 10)
+  // }
+
+      // } else if (hackPosition === 135 || hackPosition === 144 || hackPosition === 246 || hackPosition === 273) {
+    //   powerDownGunSpecific(hackPosition)
+    //   gunHack()
+
+          // killScreenTwo()
+    // } else if (hackPosition === 666 || hackPosition === 651 || hackPosition === 135 || hackPosition === 273) {
+
+              // if (cells[down].classList.contains('power-buff') && buffTime !== 0) {
+        //   hackPosition += 0
+        //   return
+
+          // function killScreenTwo() {
+  //   playSpace.classList.add('remove-grid')
+  //   secondKiller.classList.add('kill')
+  //   finalScore.textContent = scoreBonus + scoreActual
+  //   scoreActual = 0
+  //   scoreBonus = 0
+  //   scoreDisplay.textContent = scoreBonus + scoreActual
+  //   trueEndTimer()
+  //   clearInterval(party)
+  //   document.removeEventListener('keydown', handleKeyDown)
+
+  // }
+
+        // gameTimer = setInterval(() => {
+      // }, 1000)
+
+        // function powerupGun() {
+  //   cells[135].classList.add('gun')
+  //   cells[144].classList.add('gun')
+  //   cells[246].classList.add('gun')
+  //   cells[273].classList.add('gun')
+  // }
+  // function powerDownGun() {
+  //   cells[135].classList.remove('gun')
+  //   cells[144].classList.remove('gun')
+  //   cells[246].classList.remove('gun')
+  //   cells[273].classList.remove('gun')
+  // }
+
+  // function powerDownGunSpecific(position) {
+  //   cells[position].classList.remove('gun')
+  // }
+
+    // let gunTimer = null
+  // let gunTime = 0
+
+    // const secondKiller = document.querySelector('.second-kill-screen')
