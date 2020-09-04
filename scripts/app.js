@@ -39,6 +39,22 @@ function init() {
   let buffTimer = null
   let buffTime = 0
 
+  let hackTimer = null
+  let hackTime = 0
+
+  let joshTimer = null
+  let joshTime = 0
+
+  let hankTimer = null
+  let hankTime = 0
+
+  let stephTimer = null
+  let stephTime = 0
+
+  let crakeTimer = null
+  let crakeTime = 0
+
+
 
   function powerupBuff() {
     cells[666].classList.add('power')
@@ -103,7 +119,6 @@ function init() {
       return
     } else {
       timeCounted++
-      console.log(timeCounted)
     }
   }
 
@@ -125,7 +140,6 @@ function init() {
 
   function addBonus() {
     const random = Math.floor(Math.random() * 10) + 1
-    console.log(random)
     gameTimer = setInterval(() => {
       if (random === 1) {
         bonusPosition = 424
@@ -314,6 +328,7 @@ function init() {
 
   function createClass(cell) {
     cell.classList.add('innerpath')
+    cells[0].classList.add('factory')
   }
 
 
@@ -346,6 +361,7 @@ function init() {
     trueEndTimer()
     clearInterval(start)
     document.removeEventListener('keydown', handleKeyDown)
+    clearInterval(start)
   }
 
   function addHack(position) {
@@ -431,7 +447,6 @@ function init() {
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -452,30 +467,58 @@ function init() {
     switch (event.keyCode) {
       case 39:
         if (cells[right].classList.contains('innerpath') || cells[right].classList.contains('teleporter')) hackPosition++
+        removeSmoke()
         break
       case 37:
         if (cells[left].classList.contains('innerpath') || cells[left].classList.contains('teleporter')) hackPosition--
         cells[hackPosition].classList.add('left')
+        removeSmoke()
         break
       case 38:
         if (cells[up].classList.contains('innerpath') || cells[up].classList.contains('teleporter')) hackPosition = hackPosition - 40
         cells[hackPosition].classList.add('up')
+        removeSmoke()
         break
       case 40:
         if (cells[down].classList.contains('innerpath') || cells[down].classList.contains('teleporter')) hackPosition = hackPosition + 40 
         cells[hackPosition].classList.add('down')
+        removeSmoke()
         break
       case 190:
-        if (hackPosition === 124) hackPosition = 220
-        if (hackPosition === 379) hackPosition = 629
-        if (hackPosition === 649) hackPosition = 635
-        if (hackPosition === 563) hackPosition = 316
+        if (hackPosition === 124) {
+          hackPosition = 220
+          cells[hackPosition].classList.remove('other-one')
+        }
+        if (hackPosition === 379) {
+          hackPosition = 629
+          cells[hackPosition].classList.remove('other-one')
+        }
+        if (hackPosition === 649) {
+          hackPosition = 635
+          cells[hackPosition].classList.remove('other-one')
+        }
+        if (hackPosition === 563) {
+          hackPosition = 316
+          cells[hackPosition].classList.remove('other-one')
+        }
         break
       case 188:
-        if (hackPosition === 220) hackPosition = 124
-        if (hackPosition === 629) hackPosition = 379
-        if (hackPosition === 635) hackPosition = 649
-        if (hackPosition === 316) hackPosition = 563
+        if (hackPosition === 220) {
+          hackPosition = 124
+          cells[hackPosition].classList.remove('other-one')
+        }
+        if (hackPosition === 629) {
+          hackPosition = 379
+          cells[hackPosition].classList.remove('other-one')
+        }
+        if (hackPosition === 635) {
+          hackPosition = 649
+          cells[hackPosition].classList.remove('other-one')
+        }
+        if (hackPosition === 316) {
+          hackPosition = 563
+          cells[hackPosition].classList.remove('other-one')
+        }
         break
       default:
         break
@@ -502,7 +545,7 @@ function init() {
     addSteph(stephPosition)
     addCrake(crakePosition)
     for (let i = 0; i < cellCount; i++) {
-      cells[i].classList.remove('painted', 'been-here', 'been-here1', 'been-here2', 'been-here3')
+      cells[i].classList.remove('painted', 'been-here', 'been-here1', 'been-here2', 'been-here3', 'drone-death')
     }
     playSpace.classList.remove('remove-grid')
     winner.classList.remove('win')
@@ -516,6 +559,16 @@ function init() {
     powerDownBuff()
   }
 
+  function removeSmoke() {
+    cells[124].classList.remove('other-one')
+    cells[220].classList.remove('other-one')
+    cells[379].classList.remove('other-one')
+    cells[629].classList.remove('other-one')
+    cells[649].classList.remove('other-one')
+    cells[635].classList.remove('other-one')
+    cells[563].classList.remove('other-one')
+    cells[316].classList.remove('other-one')
+  }
 
   let sight
   let sight1
@@ -712,7 +765,6 @@ function init() {
       sight3 = 'up'
     }
     if (hackPosition === identification + 40 || hackPosition === identification + 80 || hackPosition === identification + 120 || hackPosition === identification + 120 || hackPosition === identification + 200 || hackPosition === identification + 240 || hackPosition === identification + 280 || hackPosition === identification + 320 || hackPosition === identification + 360 || hackPosition === identification + 400 || hackPosition === identification + 440 || hackPosition === identification + 480 || hackPosition === identification + 520 || hackPosition === identification + 560 || hackPosition === identification + 600) {
-      console.log('seen you: down')
       sight3 = 'down'
     }
   }
@@ -965,49 +1017,78 @@ function init() {
     if ((hackPosition === joshPosition) && (buffTime !== 0)) {
       clearThePath(joshPosition)
       removeJosh(joshPosition)
-      joshPosition = 409
+      killJosh()
     } else if ((hackPosition === hankPosition) && (buffTime !== 0)) {
       clearThePath1(hankPosition)
       removeHank(hankPosition)
-      hankPosition = 168
+      killHank()
     } else if ((hackPosition === stephPosition) && (buffTime !== 0)) {
       clearThePath2(stephPosition)
       removeSteph(stephPosition)
-      stephPosition = 191
+      killSteph()
     } else if ((hackPosition === crakePosition) && (buffTime !== 0)) {
       clearThePath3(crakePosition)
       removeCrake(crakePosition)
-      crakePosition = 591
+      killCrake()
     } else if (hackPosition === joshPosition || hackPosition === hankPosition || hackPosition === stephPosition || hackPosition === crakePosition) {
       lossSound()
-      killScreen()
+      killHack()
     }
   }
 
   function moveEnd() {
-    if (hackPosition === 666 || hackPosition === 651 || hackPosition === 135 || hackPosition === 273) {
+    if (hackPosition === 124) {
+      cells[220].classList.add('other-one')
+    }
+    if (hackPosition === 379) {
+      cells[629].classList.add('other-one')
+    }
+    if (hackPosition === 649) {
+      cells[635].classList.add('other-one')
+    }
+    if (hackPosition === 563) {
+      cells[316].classList.add('other-one')
+    }
+    if (hackPosition === 220) {
+      cells[124].classList.add('other-one')
+    }
+    if (hackPosition === 629) {
+      cells[379].classList.add('other-one')
+    }
+    if (hackPosition === 635) {
+      cells[649].classList.add('other-one')
+    }
+    if (hackPosition === 316) {
+      cells[563].classList.add('other-one')
+    }
+    if (cells[hackPosition].classList.contains('power')) {
       powerDownBuffSpecific(hackPosition)
+      addHack(hackPosition)
       powerUpSound()
       buffHack()
     } else if ((hackPosition === joshPosition) && (buffTime !== 0)) {
       clearThePath(joshPosition)
+      addHack(hackPosition)
       removeJosh(joshPosition)
-      joshPosition = 409
+      killJosh()
     } else if ((hackPosition === hankPosition) && (buffTime !== 0)) {
       clearThePath1(hankPosition)
+      addHack(hackPosition)
       removeHank(hankPosition)
-      hankPosition = 168
+      killHank()
     } else if ((hackPosition === stephPosition) && (buffTime !== 0)) {
       clearThePath2(stephPosition)
+      addHack(hackPosition)
       removeSteph(stephPosition)
-      stephPosition = 191
+      killSteph()
     } else if ((hackPosition === crakePosition) && (buffTime !== 0)) {
       clearThePath3(crakePosition)
+      addHack(hackPosition)
       removeCrake(crakePosition)
-      crakePosition = 591
+      killCrake()
     } else if (hackPosition === joshPosition || hackPosition === hankPosition || hackPosition === stephPosition || hackPosition === crakePosition) {
       lossSound()
-      killScreen()
+      killHack()
     } else if (scoreActual !== 1455) {
       addHack(hackPosition)
       getBonus()
@@ -1017,7 +1098,9 @@ function init() {
   }
 
   function buffHack() {
+    clearInterval(start)
     if (buffTime !== 0) {
+      start = setInterval(move, 250)
       clearInterval(buffTimer)
       buffTimer = null
       buffTime = 0
@@ -1034,14 +1117,121 @@ function init() {
       cells[up].classList.remove('power-buff')
       cells[down].classList.remove('power-buff')
       if (buffTime === 100) {
+        start = setInterval(move, 250)
         clearInterval(buffTimer)
         buffTimer = null
         buffTime = -1
+        for (let i = 0; i < cellCount; i++) {
+          cells[i].classList.remove('drone-death')
+        }
       }
       buffTime++
-      console.log(buffTime)
     }, 100)
   }
+
+  function killHack() {
+    cells[hackPosition].classList.add('hack-death')
+    clearInterval(start)
+    const cellID = hackPosition
+    removeHack(hackPosition)
+    removeJosh(hackPosition)
+    removeHank(hackPosition)
+    removeSteph(hackPosition)
+    removeCrake(hackPosition)
+    document.removeEventListener('keydown', handleKeyDown)
+    hackTimer = setInterval(() => {
+      if (hackTime === 3) {
+        clearInterval(hackTimer)
+        hackTimer = null
+        hackTime = -1
+        killScreen()
+        cells[cellID].classList.remove('hack-death')
+      }
+      hackTime++
+    }, 1000)
+  }
+
+  function killJosh() {
+    bonusSound()
+    scoreBonus += 50
+    scoreDisplay.textContent = scoreBonus + scoreActual
+    cells[joshPosition].classList.add('drone-death')
+    const cellID = joshPosition
+    removeJosh(joshPosition)
+    joshPosition = 0
+    joshTimer = setInterval(() => {
+      if (joshTime === 3) {
+        clearInterval(joshTimer)
+        joshTimer = null
+        joshTime = 0
+        joshPosition = 409
+        cells[cellID].classList.remove('drone-death')
+      } else {
+        joshTime++
+      }
+    }, 1000)
+  }
+  function killHank() {
+    bonusSound()
+    scoreBonus += 50
+    scoreDisplay.textContent = scoreBonus + scoreActual
+    cells[hankPosition].classList.add('drone-death')
+    const cellID = hankPosition
+    removeHank(hankPosition)
+    hankPosition = 0
+    hankTimer = setInterval(() => {
+      if (hankTime === 3) {
+        clearInterval(hankTimer)
+        hankTimer = null
+        hankTime = 0
+        hankPosition = 168
+        cells[cellID].classList.remove('drone-death')
+      } else {
+        hankTime++
+      }
+    }, 1000)
+  }
+  function killSteph() {
+    bonusSound()
+    scoreBonus += 50
+    scoreDisplay.textContent = scoreBonus + scoreActual
+    stephTimer = setInterval(() => {
+      cells[stephPosition].classList.add('drone-death')
+      const cellID = stephPosition
+      removeSteph(stephPosition)
+      stephPosition = 0
+      if (stephTime === 3) {
+        clearInterval(stephTimer)
+        stephTimer = null
+        stephTime = 0
+        stephPosition = 191
+        cells[cellID].classList.remove('drone-death')
+      } else {
+        stephTime++
+      }
+    }, 1000)
+  }
+  function killCrake() {
+    bonusSound()
+    scoreBonus += 50
+    scoreDisplay.textContent = scoreBonus + scoreActual
+    cells[crakePosition].classList.add('drone-death')
+    const cellID = crakePosition
+    removeCrake(crakePosition)
+    crakePosition = 0
+    crakeTimer = setInterval(() => {
+      if (crakeTime === 3) {
+        clearInterval(crakeTimer)
+        crakeTimer = null
+        crakeTime = 0
+        crakePosition = 591
+        cells[cellID].classList.remove('drone-death')
+      } else {
+        crakeTime++
+      }
+    }, 1000)
+  }
+
   function getTheGameStarted() {
     removeHack(hackPosition)
     hackPosition = 82
@@ -1054,7 +1244,7 @@ function init() {
     stephPosition = 191
     crakePosition = 591
     for (let i = 0; i < cellCount; i++) {
-      cells[i].classList.remove('painted', 'been-here', 'been-here1', 'been-here2', 'been-here3')
+      cells[i].classList.remove('painted', 'been-here', 'been-here1', 'been-here2', 'been-here3', 'drone-death')
     }
     playSpace.classList.remove('remove-grid')
     winner.classList.remove('win')

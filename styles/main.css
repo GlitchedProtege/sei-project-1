@@ -10,12 +10,24 @@ body {
 
 body p {
   margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+body p#secret-footer {
+  margin-top: -5px;
+  margin-bottom: -30px;
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: overline;
+  color: green;
 }
 
 body h1 {
   text-decoration: underline;
 }
-
 
 .grid-wrapper {
   height: 85vh;
@@ -44,14 +56,15 @@ body h1 {
   background-color: indigo;
 }
 
+.factory {
+  background-image: none;
+  background-color: indigo;
+}
+
 .win-screen {
   display: none;
 }
 .kill-screen {
-  display: none;
-}
-
-.second-kill-screen {
   display: none;
 }
 
@@ -74,6 +87,13 @@ body h1 {
   background-repeat: no-repeat;
   background-color: lightblue;
 }
+
+.grid div.teleporter.other-one {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/boom.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 
 .grid div.hack.innerpath {
   background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/unbuffed.png');
@@ -117,24 +137,9 @@ body h1 {
   background-size: contain;
 }
 
-.grid div.hack.innerpath.gun-buff {
-  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/gunbuff.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.grid div.hack.innerpath.down.gun-buff {
-  transform: rotate(90deg);
-  background-size: contain;
-}
-
-.grid div.hack.innerpath.up.gun-buff {
-  transform: rotate(270deg);
-  background-size: contain;
-}
-
-.grid div.hack.innerpath.left.gun-buff {
-  transform: rotate(180deg);
+.hack-death {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/death spin.png');
+  transform: none;
   background-size: contain;
 }
 
@@ -321,41 +326,9 @@ body h1 {
   background-size: contain;
 }
 
-.grid div.innerpath.gun {
-  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/gun.png');
+.drone-death {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/boom2.png');
   background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.grid div.innerpath.hack.gun {
-  transform: none;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.grid div.innerpath.josh.gun {
-  transform: none;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.grid div.innerpath.hank.gun {
-  transform: none;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.grid div.innerpath.steph.gun {
-  transform: none;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.grid div.innerpath.crake.gun {
-  transform: none;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .hidden {

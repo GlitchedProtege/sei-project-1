@@ -1,5 +1,7 @@
     <!-- <div class='second-kill-screen'>You cant just pick up any old drugs off of the floor! You lose! <span class='kill-score'></span>Try pacing yourself.</div> -->
 
+    end html
+
         // secondKiller.classList.remove('kill')
 
           // function gunHack() {
@@ -72,3 +74,66 @@
   // let gunTime = 0
 
     // const secondKiller = document.querySelector('.second-kill-screen')
+
+    end js
+
+    .second-kill-screen {
+  display: none;
+}
+.grid div.hack.innerpath.gun-buff {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/gunbuff.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.grid div.hack.innerpath.down.gun-buff {
+  transform: rotate(90deg);
+  background-size: contain;
+}
+
+.grid div.hack.innerpath.up.gun-buff {
+  transform: rotate(270deg);
+  background-size: contain;
+}
+
+.grid div.hack.innerpath.left.gun-buff {
+  transform: rotate(180deg);
+  background-size: contain;
+}
+
+.grid div.innerpath.gun {
+  background-image: url('/Users/liam/Development/SEI50/projects/sei-project-1/assets/gun.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.grid div.innerpath.hack.gun {
+  transform: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.grid div.innerpath.josh.gun {
+  transform: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.grid div.innerpath.hank.gun {
+  transform: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.grid div.innerpath.steph.gun {
+  transform: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.grid div.innerpath.crake.gun {
+  transform: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
