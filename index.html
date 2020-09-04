@@ -11,6 +11,9 @@
 <body>
   <h1>Clean Up Crew</h1>
   <audio src='/Users/liam/Development/SEI50/projects/sei-project-1/assets/HackedMaster.wav' id='background'></audio>
+  <audio src='/Users/liam/Development/SEI50/projects/sei-project-1/assets/power up.wav' id='power-up'></audio>
+  <audio src='/Users/liam/Development/SEI50/projects/sei-project-1/assets/bonus.wav' id='bonus-sound'></audio>
+  <audio src='/Users/liam/Development/SEI50/projects/sei-project-1/assets/you lose.wav' id='loss'></audio>
   <p>Score : <span id='score'>0</span>
     <button id='party'>Mission Start</button>
     <button id='pause' class='hidden'>Pause</button>
@@ -18,9 +21,9 @@
     <button id='reset'>Reset</button>
   <div class="grid-wrapper">
     <div class="grid"></div>
-    <div class='win-screen'>You win! Congratulations! Hit mission start to continue.</div>
-    <div class='kill-screen'>You lose! <span class='kill-score'></span>Try again.</div>
-    <div class='second-kill-screen'>You cant just pick up any old drugs off of the floor! You lose! <span class='kill-score'></span>Try pacing yourself.</div>
+    <div class='win-screen'><h2>You win! Congratulations! Hit mission start to continue.</h2></div>
+    <div class='kill-screen'><h2>You lose!<span class='kill-score'></span> Try again.</h2></div>
+    <!-- <div class='second-kill-screen'>You cant just pick up any old drugs off of the floor! You lose! <span class='kill-score'></span>Try pacing yourself.</div> -->
     <p>Instructions.</p>
     <p>Search the ship for survivors. Use the arrow keys to move. The blue squares teleport you to the other side of the screen. > to go right and < to go left. Check every square but watch out for the drones!</p>
   </div>

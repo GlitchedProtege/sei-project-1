@@ -7,14 +7,17 @@ function init() {
   const playSpace = document.querySelector('.grid')
   const winner = document.querySelector('.win-screen')
   const killer = document.querySelector('.kill-screen')
-  const secondKiller = document.querySelector('.second-kill-screen')
+  // const secondKiller = document.querySelector('.second-kill-screen')
   const resetButton = document.querySelector('#reset')
-  const partySwitch = document.querySelector('#party')
+  const startSwitch = document.querySelector('#start')
   const pauseButton = document.querySelector('#pause')
   const playButton = document.querySelector('#play')
-  let party
+  let start
   
   const audio = document.querySelector('#background')
+  const powerAudio = document.querySelector('#power-up')
+  const bonusAudio = document.querySelector('#bonus-sound')
+  const lossAudio = document.querySelector('#loss')
   let scoreActual = 0
   let scoreBonus = 0
   const score = 0
@@ -333,34 +336,34 @@ function init() {
     playSpace.classList.add('remove-grid')
     winner.classList.add('win')
     trueEndTimer()
-    clearInterval(party)
+    clearInterval(start)
     document.removeEventListener('keydown', handleKeyDown)
   }
 
   function killScreen() {
     playSpace.classList.add('remove-grid')
     killer.classList.add('kill')
-    finalScore.textContent = scoreBonus + scoreActual
+    finalScore.textContent = ` Final score was ${scoreBonus + scoreActual}.  `
     scoreActual = 0
     scoreBonus = 0
     scoreDisplay.textContent = scoreBonus + scoreActual
     trueEndTimer()
-    clearInterval(party)
+    clearInterval(start)
     document.removeEventListener('keydown', handleKeyDown)
   }
 
-  function killScreenTwo() {
-    playSpace.classList.add('remove-grid')
-    secondKiller.classList.add('kill')
-    finalScore.textContent = scoreBonus + scoreActual
-    scoreActual = 0
-    scoreBonus = 0
-    scoreDisplay.textContent = scoreBonus + scoreActual
-    trueEndTimer()
-    clearInterval(party)
-    document.removeEventListener('keydown', handleKeyDown)
+  // function killScreenTwo() {
+  //   playSpace.classList.add('remove-grid')
+  //   secondKiller.classList.add('kill')
+  //   finalScore.textContent = scoreBonus + scoreActual
+  //   scoreActual = 0
+  //   scoreBonus = 0
+  //   scoreDisplay.textContent = scoreBonus + scoreActual
+  //   trueEndTimer()
+  //   clearInterval(party)
+  //   document.removeEventListener('keydown', handleKeyDown)
 
-  }
+  // }
 
   function addHack(position) {
     cells[position].classList.add('hack')
@@ -465,17 +468,29 @@ function init() {
 
     switch (event.keyCode) {
       case 39:
+        // if (cells[right].classList.contains('power-buff') && buffTime !== 0) {
+        //   hackPosition += 0
+        //   return
         if (cells[right].classList.contains('innerpath') || cells[right].classList.contains('teleporter')) hackPosition++
         break
       case 37:
+        // if (cells[left].classList.contains('power-buff') && buffTime !== 0) {
+        //   hackPosition += 0
+        //   return
         if (cells[left].classList.contains('innerpath') || cells[left].classList.contains('teleporter')) hackPosition--
         cells[hackPosition].classList.add('left')
         break
       case 38:
+        // if (cells[up].classList.contains('power-buff') && buffTime !== 0) {
+        //   hackPosition += 0
+        //   return
         if (cells[up].classList.contains('innerpath') || cells[up].classList.contains('teleporter')) hackPosition = hackPosition - 40
         cells[hackPosition].classList.add('up')
         break
       case 40:
+        // if (cells[down].classList.contains('power-buff') && buffTime !== 0) {
+        //   hackPosition += 0
+        //   return
         if (cells[down].classList.contains('innerpath') || cells[down].classList.contains('teleporter')) hackPosition = hackPosition + 40 
         cells[hackPosition].classList.add('down')
         break
@@ -521,8 +536,8 @@ function init() {
     playSpace.classList.remove('remove-grid')
     winner.classList.remove('win')
     killer.classList.remove('kill')
-    secondKiller.classList.remove('kill')
-    stopTheStartedParty()
+    // secondKiller.classList.remove('kill')
+    stopTheGame()
     trueEndTimer()
     cells[bonusPosition].classList.remove('survivor')
     cells[bonusPosition].classList.remove('saved')
@@ -1000,9 +1015,9 @@ function init() {
   }
 
   function moveEnd() {
-    if ((hackPosition === 666 || hackPosition === 651 || hackPosition === 135 || hackPosition === 273) && (buffTime !== 0)) {
-      killScreenTwo()
-    } else if (hackPosition === 666 || hackPosition === 651 || hackPosition === 135 || hackPosition === 273) {
+    if (hackPosition === 666 || hackPosition === 651 || hackPosition === 135 || hackPosition === 273) {
+      // killScreenTwo()
+    // } else if (hackPosition === 666 || hackPosition === 651 || hackPosition === 135 || hackPosition === 273) {
       powerDownBuffSpecific(hackPosition)
       buffHack()
     // } else if (hackPosition === 135 || hackPosition === 144 || hackPosition === 246 || hackPosition === 273) {
@@ -1056,6 +1071,12 @@ function init() {
   //   }, 10)
   // }
   function buffHack() {
+    if (buffTime !== 0) {
+      clearInterval(buffTimer)
+      buffTimer = null
+      buffTime = 0
+      return
+    }
     buffTimer = setInterval(() => {
       const right = (hackPosition + 1)
       const left = (hackPosition - 1)
@@ -1069,13 +1090,13 @@ function init() {
       if (buffTime === 100) {
         clearInterval(buffTimer)
         buffTimer = null
-        buffTime = 0
+        buffTime = -1
       }
       buffTime++
       console.log(buffTime)
     }, 100)
   }
-  function getThePartyStarted() {
+  function getTheGameStarted() {
     removeHack(hackPosition)
     hackPosition = 82
     removeJosh(joshPosition)
@@ -1092,13 +1113,13 @@ function init() {
     playSpace.classList.remove('remove-grid')
     winner.classList.remove('win')
     killer.classList.remove('kill')
-    secondKiller.classList.remove('kill')
-    stopTheStartedParty()
+    // secondKiller.classList.remove('kill')
+    stopTheGame()
     trueEndTimer()
     scoreBonus += scoreActual
     scoreActual = 0
-    clearInterval(party)
-    party = setInterval(move, 250)
+    clearInterval(start)
+    start = setInterval(move, 250)
     addHack(hackPosition)
     addJosh(joshPosition)
     addHank(hankPosition)
@@ -1115,9 +1136,9 @@ function init() {
     // powerupGun()
   }
 
-  function pauseParty() {
+  function pauseGame() {
     trueEndTimer()
-    clearInterval(party)
+    clearInterval(start)
     document.removeEventListener('keydown', handleKeyDown)
     pauseMusic()
     pauseButton.classList.add('hidden')
@@ -1127,8 +1148,8 @@ function init() {
     buffTime = 0
   }
 
-  function playParty() {
-    party = setInterval(move, 250)
+  function playGame() {
+    start = setInterval(move, 250)
     addBonus()
     document.addEventListener('keydown', handleKeyDown)
     backgroundMusic()
@@ -1136,8 +1157,8 @@ function init() {
     pauseButton.classList.remove('hidden')
   }
 
-  function stopTheStartedParty() {
-    clearInterval(party)
+  function stopTheGame() {
+    clearInterval(start)
     removeHack(hackPosition)
     removeJosh(joshPosition)
     removeHank(hankPosition)
@@ -1154,9 +1175,9 @@ function init() {
   createGrid()
 
   resetButton.addEventListener('click', setBack)
-  pauseButton.addEventListener('click', pauseParty)
-  playButton.addEventListener('click', playParty)
-  partySwitch.addEventListener('click', getThePartyStarted)
+  pauseButton.addEventListener('click', pauseGame)
+  playButton.addEventListener('click', playGame)
+  startSwitch.addEventListener('click', getTheGameStarted)
 }
 
 
