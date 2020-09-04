@@ -9,14 +9,14 @@ body {
 }
 
 body p {
-  margin-top: 50px;
+  margin-top: 15px;
   margin-left: 50px;
   margin-right: 50px;
 }
 
 body p#secret-footer {
-  margin-top: -5px;
-  margin-bottom: -30px;
+  margin-top: 50px;
+  margin-bottom: -100px;
   text-decoration: underline;
 }
 

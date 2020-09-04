@@ -1140,7 +1140,7 @@ function init() {
     removeCrake(hackPosition)
     document.removeEventListener('keydown', handleKeyDown)
     hackTimer = setInterval(() => {
-      if (hackTime === 3) {
+      if (hackTime === 2) {
         clearInterval(hackTimer)
         hackTimer = null
         hackTime = -1
