@@ -1,6 +1,6 @@
 # Clean up crew
 
-A Pacman clone to run in your browser.
+A Pacman clone to run in your browser. Developed over 7 days.
 
 ## Deployed Link
 
