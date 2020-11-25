@@ -23,7 +23,7 @@ After deciding to use Pacman as the basis for my cloned game, I sat down to plan
 First step was to make a grid that an icon can move on, as a map. I experimented with a few different sizes including the original pacman dimensions, but eventually settled on one a lot bigger with 800 cells. Making the character move was just removing the icon from the cell they are on, and displaying it on the cell + 1, - 1, + 40 or - 40 from the current one. I added the teleports in first, as they are basically just another kind of movement, but to preset cells. I decided to use classes to differentiate between the path the characters could move on and the walls of the maze. I manually wrote down what cells where going to be walls and which werent, and then used slice to add the class.
 
 ![Wall generation](https://i.imgur.com/vlwNYQ8.png)
-![Manual cells](https://i.imgur.com/IlqnDMm.jpg)
+<!-- ![Manual cells](https://i.imgur.com/IlqnDMm.jpg) -->
 
 The next task was to make the walls solid to stop the player going off the map or through walls. The class I added wasnt just a color change, it is something to be checked before allowing movement onto that cell.
 
